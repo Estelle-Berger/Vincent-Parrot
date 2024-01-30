@@ -1,0 +1,20 @@
+*{
+    font-family: 'Sarabun', sans-serif;
+}
+h1, h2{
+    font-family: 'Comfortaa', sans-serif;
+}
+.avis{
+    font-family: 'Hina Mincho', serif;
+}
+.nav-underline .nav-link.active, .nav-underline .show>.nav-link, .nav-link:hover, a{
+    color: #a8bbb0!important;
+    font-weight: normal;
+}
+.img-border-radius{
+    height: 200px;
+    border-radius: 50%;
+}
+footer{
+    color: #a8bbb0;
+}
