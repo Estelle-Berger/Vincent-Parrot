@@ -1,4 +1,6 @@
 *{
+    margin: 0px;
+    padding: 0px;
     font-family: 'Sarabun', sans-serif;
 }
 h1, h2{
@@ -17,4 +19,15 @@ h1, h2{
 }
 footer{
     color: #a8bbb0;
+}
+.star:hover {
+	cursor: pointer;
+}
+
+.stargrey {
+	color: #96969d;
+}
+.stars {
+	margin: 0px;
+	text-align: center;
 }

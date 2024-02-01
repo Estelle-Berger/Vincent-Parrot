@@ -9,12 +9,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Hina+Mincho&family=Sarabun:wght@200&display=swap" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="">
+    <header>
         <nav class="navbar navbar-expand-lg border-bottom">
-            <div class="container-fluid d-flex ">
+            <div class="m-2 container-fluid">
                 <a href="/" class="navbar-brand">
                     <img src="" alt="logo Garage" width="">
                 </a>
@@ -37,7 +38,7 @@
                         </li>
                         <li class="nav-item"><a href="cars.php" class="nav-link px-2">Voitures d'occasion</a></li>
                         <li class="nav-item"><a href="#" class="nav-link px-2">Contact</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2">Avis</a></li>
+                        <li class="nav-item"><a href="avis.php" class="nav-link px-2">Avis</a></li>
                     </ul>
                     <button type="button" class="btn btn-outline-success me-2">Connexion</button>
                 </div>

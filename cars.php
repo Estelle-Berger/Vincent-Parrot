@@ -2,13 +2,13 @@
     require_once('header.php');
 ?>
 <div class="m-2 container-fluid">
-    <h1>Voiture d'occasion</h1>
-    <div>
-    <h3>Marque</h3>
+    <h1 class="p-2">Voiture d'occasion</h1>
+    <div class="d-flex justify-content-evenly">
         <div class="card" style="width: 18rem;">
             <img src="./assets/images/voiture.jpg" class="card-img-top" alt="...">
             <div class="px-2 card-body">
-                <h5 class="card-title">Modèle</h5>
+                <h5 class="card-title">Marque</h5>
+                <h6>Modèle</h6>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
             <ul class="list-group list-group-flush">

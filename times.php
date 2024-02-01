@@ -10,16 +10,20 @@
             <div class="row">
                     <p class="col align-self-center text-center">Lundi</p>
                 <div class="col">
-                    <input type="text" class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2" placeholder="open / matin">
+                    <input type="time" class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2"
+                    placeholder="open / matin">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2" placeholder="close / matin">
+                    <input type="time" class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2"
+                    placeholder="close / matin">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2" placeholder="open /après-midi">
+                    <input type="time" class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2"
+                    placeholder="open /après-midi">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2" placeholder="close / après-midi">
+                    <input type="time" class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2"
+                    placeholder="close / après-midi">
                 </div>
             </div>
         </div>
