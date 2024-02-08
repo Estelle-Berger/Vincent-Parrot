@@ -1,10 +1,11 @@
 <?php 
-    require_once('header.php');
+    require_once('./templates/header.php');
 ?>
 <div class="p-2 container-fluid">
-    <form action="">
+    <form method="post" action="">
         <legend>Contactez-moi :</legend>
-            <div class="row d-flex justify-content-evenly">
+        <div class="d-flex justify-content-center">
+            <div class="p-2 row border rounded d-flex justify-content-center">
                 <div class="row">
                     <div class="col-4">
                         <label for="lastname"class="form-label">Nom</label>
@@ -46,9 +47,10 @@
                         <input class="btn btn-outline-secondary" type="submit" id="mybutton" name="valide_cars" value="Envoyer" >
                     </div>
             </div>
+        </div>
     </form>
 </div>
 
 <?php 
-    require_once('footer.php');
+    require_once('./templates/footer.php');
 ?>

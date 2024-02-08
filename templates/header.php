@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Hina+Mincho&family=Sarabun:wght@200&display=swap" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
     <header>
@@ -26,16 +26,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="nav nav-underline me-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a href="index.php" class="nav-link px-2">Accueil</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Services
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="services.php">Carrosserie</a></li>
-                                <li><a class="dropdown-item" href="services.php">Mécanique</a></li>
-                                <li><a class="dropdown-item" href="services.php">Entretien</a></li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"><a href="services.php" class="nav-link px-2">Services</a></li>
                         <li class="nav-item"><a href="cars.php" class="nav-link px-2">Voitures d'occasion</a></li>
                         <li class="nav-item"><a href="#" class="nav-link px-2">Contact</a></li>
                         <li class="nav-item"><a href="avis.php" class="nav-link px-2">Avis</a></li>

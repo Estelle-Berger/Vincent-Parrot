@@ -1,12 +1,12 @@
 <?php 
-    require_once('header.php');
+    require_once('../templates/header.php');
     // $caracteristiques = linesToArray($cars['caracteristique']);
 ?>
 
 <div class="m-2 container-fluid">
     <div class="d-flex justify-content-evenly">
         <div class="row">
-            <div class="p-2 col">
+            <div class="p-2">
                 <h1>Marque</h1>
             </div>
             <div class="p-2 row">
@@ -66,12 +66,12 @@
                 <!-- <p><?=$caracteristiques;?></p> -->
             </div>
             <div>
-                <?php require_once('form_cars.php') ?>
+                <?php require_once('./form/form_cars.php') ?>
             </div>
         </div>
     </div>
 </div>
 
 <?php 
-    require_once('footer.php');
+    require_once('../templates/footer.php');
 ?>
