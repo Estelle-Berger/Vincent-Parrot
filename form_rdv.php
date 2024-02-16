@@ -32,13 +32,13 @@
                     <div class="row">
                         <div class="col-6">
                             <label for="phone"class="form-label">Téléphone</label>
-                            <input type="tel"class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2"
+                            <input type="number" step="2" class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2"
                             placeholder="00.00.00.00.00" id="phone" name="phone" required>
                         </div>
                         <div class="col-6">
-                            <label for="mail"class="form-label">Mail</label>
-                            <input type="mail"class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2"
-                            placeholder="exemple@gmail.com" id="mail" name="mail" required>
+                            <label for="email"class="form-label">Email</label>
+                            <input type="email"class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2"
+                            placeholder="exemple@gmail.com" id="email" name="email" required>
                         </div>
                     </div>
                     <div class="row">

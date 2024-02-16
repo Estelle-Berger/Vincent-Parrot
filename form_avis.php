@@ -1,6 +1,4 @@
-<?php 
-    require_once('../templates/header.php');
-?>
+
 <div class="m-2 container-fluid">
     <form method="post" action="">
         <legend>Laisser un avis :</legend>
@@ -32,22 +30,19 @@
                         </div>
                     </div>
                     <div class="p-2">
-                        <label for="name" class="form-label">Nom</label>
+                        <label for="name" class="form-label">Nom*</label>
                         <input type="text"class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded"
-                                id="name" name="name">
+                                id="name" name="name"required>
                     </div>
                     <div class="p-2">
+                        <label for="comment" class="form-label">Message*</label>
                         <textarea  class="avis form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border 
-                        rounded" name="avis" id="avis" cols="20" rows="5"required></textarea>
+                        rounded" name="comment" id="comment" cols="20" rows="5"required></textarea>
                     </div>
                     <div class="p-2 d-flex justify-content-center">
-                        <input class="btn btn-outline-secondary" type="submit" id="mybutton" name="valide_avis" value="Envoyer" >
+                        <input class="btn btn-outline-secondary" type="submit" id="mybutton" name="send_avis" value="Envoyer" >
                     </div>
                 </div>
             </div>
     </form>
 </div>
-
-<?php 
-    require_once('../templates/footer.php');
-?>

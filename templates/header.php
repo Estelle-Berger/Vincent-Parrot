@@ -1,3 +1,7 @@
+<?php 
+    require_once('./lib/config.php');
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,7 +21,7 @@
         <nav class="navbar navbar-expand-lg border-bottom">
             <div class="m-2 container-fluid">
                 <a href="/" class="navbar-brand">
-                    <img src="" alt="logo Garage" width="">
+                    <img src="./assets/images/logo.png" alt="logo Garage" width="100px">
                 </a>
                 <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,8 +34,32 @@
                         <li class="nav-item"><a href="cars.php" class="nav-link px-2">Voitures d'occasion</a></li>
                         <li class="nav-item"><a href="#" class="nav-link px-2">Contact</a></li>
                         <li class="nav-item"><a href="avis.php" class="nav-link px-2">Avis</a></li>
+                        <li>
+                            <?php 
+                            if(isset($_SESSION['isLogged']) AND $_SESSION["isLogged"]==true){
+                                if (isset($_SESSION['User_Profil']) AND $_SESSION['User_Profil'] == 1){?>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Administration</a>
+                                    <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="admin_cars.php">Gestion des voitures d'occasion</a></li>
+                                    <li><a class="dropdown-item" href="admin_options.php">Gestion des options</a></li>
+                                    <li><a class="dropdown-item" href="admin_services.php">Gestion des services</a></li>
+                                    <li><a class="dropdown-item" href="admin_rdv.php">Gestion des rendez-vous</a></li>
+                                    <li><a class="dropdown-item" href="admin_avis.php">Gestion des avis</a></li>
+                                    <li><a class="dropdown-item" href="admin_employes.php">Gestion des employés</a></li>
+                                    </ul>
+                                </li>
+                            <?php }
+                                else {?>
+                            <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Employe</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="admin_cars.php">Gestion des voitures d'occasion</a></li>
+                                        <li><a class="dropdown-item" href="admin_services.php">Gestion des services</a></li>
+                                    </ul>
+                            <?php }}?>
                     </ul>
-                    <button type="button" class="btn btn-outline-success me-2">Connexion</button>
+                    <a href="./login.php" class="btn btn-outline-secondary" type="submit">Connexion</a>
                 </div>
             </div>
         </nav>

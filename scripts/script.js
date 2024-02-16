@@ -7,10 +7,10 @@ function onStarClick(event) {
     document.cookie = "valeur_etoile = " + (parseInt(indexClique) + 1);
     let parent = $(this).parent();
     parent.find('.star').addClass('stargrey');
-	parent.find('.star').removeClass('orange');
+	parent.find('.star').removeClass('yellow');
     for (let i = 0; i <= indexClique; i++) {
         let etoile = parent.find('.star[data-index=' + i + ']');
-        etoile.addClass('orange');
+        etoile.addClass('yellow');
 		etoile.removeClass('stargrey');
 	}
 }
@@ -18,8 +18,9 @@ const mybutton = document.getElementById("mybutton");
 // mybutton.addEventListener("click",() => {
 //     alert("Votre avis à bien été pris en compte !");
 // });
+// ------------------------------caractéristique--------------------------------------------------
 
-// ---------filtre--------
+// ------------------------------------filtre-----------------------------------------------
 window.onload = function(){
     slideOne();
     slideTwo();
@@ -54,36 +55,36 @@ function fillColor(){
         #a8bbb0 ${percent1}%, #a8bbb0 ${percent2}%, #ebe8e0 ${percent2}%)`;
 }
 
-window.onload = function(){
-    slideOnePrice();
-    slideTwoPrice();
-}
-let sliderOnePrice = document.getElementById("slider-min-price");
+// window.onload = function(){
+//     slideOnePrice();
+//     slideTwoPrice();
+// }
+// let sliderOnePrice = document.getElementById("slider-min-price");
 
-let sliderTwoPrice = document.getElementById("slider-max-price");
-let displayValOnePrice = document.getElementById("range1-price");
-let displayValTwoPrice = document.getElementById("range2-price");
-let minGapPrice = 0;
-let sliderTrackPrice = document.querySelector(".slider-track-price");
-let sliderMaxValuePrice = document.getElementById("slider-min-price").max;
+// let sliderTwoPrice = document.getElementById("slider-max-price");
+// let displayValOnePrice = document.getElementById("range1-price");
+// let displayValTwoPrice = document.getElementById("range2-price");
+// let minGapPrice = 0;
+// let sliderTrackPrice = document.querySelector(".slider-track-price");
+// let sliderMaxValuePrice = document.getElementById("slider-min-price").max;
 
-function slideOnePrice(){
-    if(parseInt(sliderTwoPrice.value) - parseInt(sliderOnePrice.value) <= minGapPrice){
-        sliderOnePrice.value = parseInt(sliderTwoPrice.value) - minGapPrice;        
-    }
-    displayValOnePrice.textContent = sliderOnePrice.value;
-    fillColorPrice();
-}
-function slideTwoPrice(){
-    if(parseInt(sliderTwoPrice.value) - parseInt(sliderOnePrice.value) <= minGapPrice){
-        sliderTwoPrice.value = parseInt(sliderOnePrice.value) + minGapPrice;
-    }
-    displayValTwoPrice.textContent = sliderTwoPrice.value;
-    fillColorPrice();
-}
-function fillColorPrice(){
-    percent1 = (sliderOnePrice.value / sliderMaxValuePrice) * 100;
-    percent2 = (sliderTwoPrice.value / sliderMaxValuePrice) * 100;
-    sliderTrackPrice.style.background = `linear-gradient(to right, #ebe8e0 ${percent1}%,
-        #a8bbb0 ${percent1}%, #a8bbb0 ${percent2}%, #ebe8e0 ${percent2}%)`;
-}
+// function slideOnePrice(){
+//     if(parseInt(sliderTwoPrice.value) - parseInt(sliderOnePrice.value) <= minGapPrice){
+//         sliderOnePrice.value = parseInt(sliderTwoPrice.value) - minGapPrice;        
+//     }
+//     displayValOnePrice.textContent = sliderOnePrice.value;
+//     fillColorPrice();
+// }
+// function slideTwoPrice(){
+//     if(parseInt(sliderTwoPrice.value) - parseInt(sliderOnePrice.value) <= minGapPrice){
+//         sliderTwoPrice.value = parseInt(sliderOnePrice.value) + minGapPrice;
+//     }
+//     displayValTwoPrice.textContent = sliderTwoPrice.value;
+//     fillColorPrice();
+// }
+// function fillColorPrice(){
+//     percent1 = (sliderOnePrice.value / sliderMaxValuePrice) * 100;
+//     percent2 = (sliderTwoPrice.value / sliderMaxValuePrice) * 100;
+//     sliderTrackPrice.style.background = `linear-gradient(to right, #ebe8e0 ${percent1}%,
+//         #a8bbb0 ${percent1}%, #a8bbb0 ${percent2}%, #ebe8e0 ${percent2}%)`;
+// }

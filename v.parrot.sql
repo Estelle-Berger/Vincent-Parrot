@@ -2,6 +2,24 @@ CREATE DATABASE v_parrot;
 
 USE v_parrot;
 
+CREATE TABLE profils(
+    profil_id INT(11)NOT NULL PRIMARY KEY,
+    profil_name VARCHAR(255) NOT NULL
+);
+
+INSERT INTO profils VALUES(1, 'Administrateur');
+INSERT INTO profils VALUES(2, 'Employé');
+
+CREATE TABLE users(
+    user_id INT(11)NOT NULL PRIMARY KEY,
+    firstname VARCHAR(255) NOT NULL,
+    lastname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    profil_categorie INT,
+    FOREIGN KEY (profil_categorie)REFERENCES profils(profil_id)
+);
+
 CREATE TABLE categories(
     categorie_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,
     categorie_name VARCHAR(255) NOT NULL
@@ -27,4 +45,46 @@ CREATE TABLE opening_hours(
     closed_am VARCHAR(20)NOT NULL,
     open_pm VARCHAR(20)NOT NULL,
     closed_pm VARCHAR(20)NOT NULL
+);
+
+CREATE TABLE options(
+    option_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    option_name VARCHAR (255) NOT NULL
+);
+
+CREATE TABLE cars(
+    car_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    marque VARCHAR(50) NOT NULL,
+    model VARCHAR(50) NOT NULL,
+    kilometers VARCHAR(50) NOT NULL,
+    years VARCHAR(50) NOT NULL,
+    price VARCHAR(50) NOT NULL,
+    color VARCHAR(50) NOT NULL,
+    energie VARCHAR(50) NOT NULL,
+    image VARCHAR(50) NOT NULL,
+    galerie VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE options_cars(
+    option_id INT(11)NOT NULL,
+    car_id INT(11)NOT NULL,
+    FOREIGN KEY (option_id) REFERENCES options (option_id),
+    FOREIGN KEY (car_id) REFERENCES car (car_id),
+    PRIMARY KEY (option_id, car_id)
+);
+
+CREATE TABLE send_avis(
+    send_avis_id INT(11)NOT NULL,
+    avis VARCHAR (255) NOT NULL,
+    note VARCHAR (255) NOT NULL,
+    name VARCHAR (255) NOT NULL,
+    comment VARCHAR (255) NOT NULL
+);
+
+CREATE TABLE save_avis(
+    save_avis_id INT(11)NOT NULL,
+    avis_save VARCHAR (255) NOT NULL,
+    note_save VARCHAR (255) NOT NULL,
+    name_save VARCHAR (255) NOT NULL,
+    comment_save VARCHAR (255) NOT NULL
 );

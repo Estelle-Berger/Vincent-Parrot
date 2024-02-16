@@ -1,77 +1,68 @@
 <?php 
-    require_once('../templates/header.php');
-    // $caracteristiques = linesToArray($cars['caracteristique']);
+    require_once('./templates/header.php');
+    require_once('./lib/config.php');
+
+
+$id = $_GET['car_id'];
+$requete = $bdd->prepare("SELECT * FROM cars WHERE cars.car_id = :id");
+$requete->bindParam(':id', $id, PDO::PARAM_INT);
+$requete->execute();
+$cars =$requete->fetchAll();
 ?>
 
 <div class="m-2 container-fluid">
-    <div class="d-flex justify-content-evenly">
-        <div class="row">
+    <div class="d-flex justify-content-evenly flex-wrap">
+        <div class="col-6">
             <div class="p-2">
-                <h1>Marque</h1>
-            </div>
-            <div class="p-2 row">
-                <div class="col-4">
-                    <p class="text-center border rounded">Prix</p>
-                </div>
-                <div class="col-4">
-                    <p class="text-center border rounded">Année</p>
-                </div>
-                <div class="col-4">
-                    <p class="text-center border rounded">Kilomètres</p>
-                </div>
+                <?php foreach($cars as $car){?>
+                <h1><?=$car['marque'];?></h1>
             </div>
             <div class="p-2 d-flex justify-content-center">
-                <img src="./assets/images/v2.jpg" alt="">
-            </div>
-            <div class="p-2 d-flex justify-content-center">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Galerie
-                </button>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modèle</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div id="carouselExample" class="carousel slide">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="./assets/images/v2.jpg" class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./assets/images/v3.jpg" class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./assets/images/v4.jpg" class="d-block w-100" alt="...">
-                                        </div>
-                                    </div>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <p>caracteristiques</p>
-                <!-- <p><?=$caracteristiques;?></p> -->
-            </div>
-            <div>
-                <?php require_once('./form/form_cars.php') ?>
+                <img src="<?=$car['image'];?>" alt="">
             </div>
         </div>
+        <div class="p-2 col-3">
+            <div class="col">
+                <label for="text"class="form-label">Marque</label>
+                <p class="text-center border rounded"><?=$car['marque'];?></p>
+            </div>
+            <div class="col">
+                <label for="text"class="form-label">Mise en circulation</label>
+                <p class="text-center border rounded"><?=$car['years'];?></p>
+            </div>
+            <div class="col">
+                <label for="text"class="form-label">Kilomètres</label>
+                <p class="text-center border rounded"><?=$car['kilometers'];?></p>
+            </div>
+            <div class="col">
+                <label for="text"class="form-label">Couleur</label>
+                <p class="text-center border rounded"><?=$car['color'];?></p>
+            </div>
+            <div class="col">
+                <label for="text"class="form-label">Carburant</label>
+                <p class="text-center border rounded"><?=$car['energie'];?></p>
+            </div>
+        </div>
+            <?php }?>
+            <?php 
+            $requete = $bdd->prepare("SELECT DISTINCT o.option_name FROM options_cars oc LEFT JOIN options o ON o.option_id=oc.option_id WHERE car_id = :id");
+                $requete->bindParam(':id', $id, PDO::PARAM_INT);
+                $requete->execute();
+                $options =$requete->fetchAll();
+                ?>
+            <div class="p-2 col-3">
+                <label for="text"class="form-label">Options</label>
+                <ul class="text-start border rounded">
+                <?php foreach($options as $option){?>
+                    <li><?=$option['option_name'];?></li>
+                    <?php }?>
+                </ul>
+            </div>
+    </div>
+    <div>
+        <?php require_once('./form_cars.php') ?>
     </div>
 </div>
-
 <?php 
-    require_once('../templates/footer.php');
+    require_once('./templates/footer.php');
 ?>

@@ -1,20 +1,102 @@
 <?php 
-
+session_start();
 function linesToArray($string){
     return explode(PHP_EOL, $string);
 }
 // -----------------------------connexion à la bdd-----------------------------------
 $dsn = "mysql:host=localhost;dbname=v_parrot";
 $username = "root";
-$password = "";
+$password1 = "";
 
 try{
-    $bdd = new PDO($dsn, $username, $password);
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $bdd = new PDO($dsn, $username, $password1);
+    $bdd->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e){
     echo "Erreur de connexion : ".$e->getMessage();
 }
+#---------------------validation login-----------------
+if($_SERVER["REQUEST_METHOD"] == "POST" AND isset($_POST['valid_login'])){
+    
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    if($email != ""){
+        // connexion à la bdd en tant qu'admin---------
+        $requete_login = $bdd->prepare("SELECT*FROM users WHERE email = '$email' AND password = '$password'");
+        $requete_login->execute();
+        if ($requete_login->rowCount()==1){
+            $user = $requete_login->fetch();
+            session_destroy();
+            session_start();
+            $_SESSION["isLogged"]=true;
+            $_SESSION["User_Profil"]=$user['profil_categorie'];
+        
+            
+            header("Location: ./admin_cars.php");
+            exit(); 
+        }
+        else{
+            $error_msg = "Email ou mot de passe incorrect !";
+        }
+    };
+}
+// ----------------insertion des employés par l'administrateur---------------------------------
+
+if(isset($_POST['save_employe'])){
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    if(isset($_POST['profil'])){
+        $profil = $_POST['profil'];
+    }
+    else{
+        $profil = '';
+    }
+
+    $requete = $bdd->prepare("INSERT INTO users VALUES(1, :prenom, :nom, :email, :password, :profil)");
+    $requete->execute(
+        array(
+            "prenom" => $firstname,
+            "nom" => $lastname,
+            "email" => $email,
+            "password" => $password,
+            "profil" => $profil
+        )
+    );
+
+}
+
+if(isset($_POST['save_password'])){
+    if((isset($_POST['password'])) AND (isset($_POST['password_confirm']))){
+        $email_password = $_POST['email'];
+        $password_employe = $_POST['password'];
+        $password_confirm = $_POST['password_confirm'];
+        if($password_employe == $password_confirm){
+            $requete_email = $bdd->prepare("SELECT email FROM users WHERE email = $email_password");
+            $requete_email->execute();
+            if($requete_email-> rowCount() == 1){
+                $requete_password = $bdd->prepare("UPDATE users SET password = :pass WHERE email = $email_password");
+                $requete_password->execute(
+                    array(
+                        "pass" => $password_employe
+                    )
+                );
+
+            }
+            else{
+                $error_msg = 'Votre email est inconnu.';
+            }
+        }
+        else {
+            $error_msg = 'Vos mots de passe ne correspondent pas';
+        }
+    }
+    else{
+        $error_msg = 'Veuillez saisir et confirmer votre mot de passe.';
+    }
+}
+
 // ---------------------------insertion des services---------------------------------
 
 if(isset($_POST['save_service'])){
@@ -43,8 +125,76 @@ if(isset($_POST['save_service'])){
         )
     );
     $_SESSION["message_delete"] = "Le service est supprimé";
-    header("Location: ../admin_services.php");
+    header("Location: ./admin_services.php");
+
 }
+//-----------------------------insertion des voitures---------------
+
+if(isset($_POST['save_cars'])){
+    $marque = $_POST['marque'];
+    $model = $_POST['model'];
+    $kilometers = $_POST['kilometers'];
+    $years = $_POST['years'];
+    $price = $_POST['price'];
+    $color = $_POST['color'];
+    $energie = $_POST['energie'];
+    $image = $_POST['image'];
+    $galerie = $_POST['galerie'];
+
+    //on renregistre la voiture
+    $requete = $bdd->prepare("INSERT INTO cars VALUES(0, :marque, :model, :kilometers, :years, :price, :color, :energie, :image, :galerie)");
+    $requete->execute(
+        array(
+            "marque" => $marque,
+            "model" => $model,
+            "kilometers" => $kilometers,
+            "years" => $years,
+            "price" => $price,
+            "color" => $color,
+            "energie" => $energie,
+            "image" => $image,
+            "galerie" => $galerie
+        )
+        );
+    //on recupere l'id de la voiture qu'on vient de créer
+    $requete = $bdd->prepare("SELECT max(car_id) as id_max FROM cars");
+    $requete->execute();
+    $maxCars = $requete->fetch();
+    $maxCars_id = $maxCars["id_max"];
+
+    //on cherche les options checked et on les enregistre dans la table de liaison
+    $requete = $bdd->prepare("SELECT * FROM options");
+    $requete->execute();
+    $listeOptions = $requete->fetchAll();
+
+    foreach($listeOptions as $option){
+        if (isset($_POST["option_".$option["option_id"]])){
+            $requete = $bdd->prepare("INSERT INTO options_cars VALUES(:option_id, :cars_id)");
+        $requete->execute(
+            array(
+                "option_id" => $option["option_id"],
+                "cars_id" => $maxCars_id
+            )
+            );
+        }
+    }
+}
+//-------------------------------insertion des options---------------------------
+if(isset($_POST['save_options'])){
+    $option_name = $_POST['option'];
+
+    $requete = $bdd->prepare("INSERT INTO options VALUES(0, :nom)");
+    $requete->execute(
+        array(
+            "nom" => $option_name
+        )
+        );
+}
+
+$requete = $bdd->prepare("SELECT max(option_id) FROM options");
+$requete->execute();
+$maxOptions_id = $requete->fetchAll();
+
 // -----------------------------------les horaires---------------------------------------
 
 if(isset($_POST['save_times'])){
@@ -153,3 +303,20 @@ if(isset($_POST['save_times'])){
         )
     );
 }
+//----------------------------insertion des avis---------------------
+if(isset($_POST['send_avis'])){
+    $avis = $_POST['avis'];
+    $note = $_COOKIE["valeur_etoile"];
+    $name = $_POST['name'];
+    $comment = $_POST['comment'];
+
+    $requete = $bdd->prepare("INSERT INTO send_avis VALUES(0, :avis, :note, :name, :comment)");
+    $requete->execute(
+        array(
+            "avis" => $avis,
+            "note" => $note,
+            "name" => $name,
+            "comment" => $comment
+        )
+    );
+} 

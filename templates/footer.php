@@ -34,7 +34,7 @@ $times = $requete->fetchAll();
         </div>
         <div class="col-md-4 d-flex justify-content-end align-items-center">
             <a href="index.php" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-                <img src="" width="50" alt="Logo garage">
+                <img src="./assets/images/logo.png" width="100px" alt="Logo garage">
             </a>
         <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Company, Inc</span>
         </div>

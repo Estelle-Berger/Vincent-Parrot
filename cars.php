@@ -1,15 +1,20 @@
 <?php 
-    require_once('../templates/header.php');
+    require_once('./templates/header.php');
+    require_once('./lib/config.php');
+    $requete = $bdd->prepare("SELECT * FROM cars");
+    $requete->execute();
+    $cars=$requete->fetchAll();
 ?>
+
 <div class="m-2 container-fluid">
     <h1 class="p-2">Voiture d'occasion</h1>
     <div class="filter-cars">
         <div class="filter">
             <div class="text-center"><h6 class="fw-bold text-decoration-underline">Kilométrage</h6></div>
             <div class="values">
-                <span class="" id="range1"></span>
+                <span id="range1"></span>
                 <span>km - </span>
-                <span class="" id="range2"></span>
+                <span id="range2"></span>
                 <span>km</span>
             </div>
             <div class="container d-flex justify-content-center">
@@ -22,36 +27,36 @@
             <div class="d-flex justify-content-center">
                 <input class="d-flex justify-content-center" type="reset" value="Reinisialiser">
             </div>
-        
+        </div>
     </div>
-</div>
 
 
-    <div class="row">
+    <div class="d-flex justify-content-evenly gap-2 flex-wrap">
+    <?php foreach ($cars as $car){?>
         <div class="d-flex justify-content-center flex-wrap">
             <div class="p-2 col">
                 <div class="card" style="width: 18rem;">
-                    <img src="./assets/images/voiture.jpg" class="card-img-top" alt="...">
+                    <img src="<?=$car['image'];?>" class="card-img-top" alt="...">
                     <div class="px-2 card-body">
-                        <h5>Marque</h5>
-                        <h6>Modèle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5><?=$car['marque'];?></h5>
+                        <h6><?=$car['model'];?></h6>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="px-2 list-group-item"><div>1985 Mise en circulation<br>15000 kilomètres</div></li>
-                        <li class="px-2 list-group-item"><div>Diesel<br>Automatique</div></li>
-                        <li class="px-2 list-group-item">45 000 €</li>
+                        <li class="px-2 list-group-item"><div><?=$car['years'];?> Mise en circulation<br><?=$car['kilometers'];?> kilomètres</div></li>
+                        <li class="px-2 list-group-item"><div><?=$car['energie'];?><br>Automatique</div></li>
+                        <li class="px-2 list-group-item"><?=$car['price'];?></li>
                     </ul>
                     <div class="card-body">
-                        <a href="car.php" class="card-link">Voir le véhicule</a>
+                        <a href="car.php?car_id=<?=$car['car_id'];?>" class="card-link">Voir le véhicule</a>
                     </div>
                 </div>
             </div>
         </div>
+        <?php }?>
     </div>
 </div>
 
 
 <?php 
-    require_once('../templates/footer.php');
+    require_once('./templates/footer.php');
 ?>
