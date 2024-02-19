@@ -3,6 +3,15 @@ session_start();
 function linesToArray($string){
     return explode(PHP_EOL, $string);
 }
+function RandomString($nbchar)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randstring = '';
+        for ($i = 0; $i < $nbchar; $i++) {
+            $randstring = $randstring.$characters[rand(0, strlen($characters))];
+        }
+        return $randstring;
+    }
 // -----------------------------connexion à la bdd-----------------------------------
 $dsn = "mysql:host=localhost;dbname=v_parrot";
 $username = "root";
@@ -26,14 +35,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST" AND isset($_POST['valid_login'])){
         $requete_login->execute();
         if ($requete_login->rowCount()==1){
             $user = $requete_login->fetch();
+            if($user['password_system']==1){
+                header("Location: ./password_employe.php");
+                exit(); 
+            }
+            else{
             session_destroy();
             session_start();
             $_SESSION["isLogged"]=true;
             $_SESSION["User_Profil"]=$user['profil_categorie'];
-        
             
             header("Location: ./admin_cars.php");
             exit(); 
+        }
         }
         else{
             $error_msg = "Email ou mot de passe incorrect !";
@@ -46,7 +60,7 @@ if(isset($_POST['save_employe'])){
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = RandomString(8);
     if(isset($_POST['profil'])){
         $profil = $_POST['profil'];
     }
@@ -54,7 +68,7 @@ if(isset($_POST['save_employe'])){
         $profil = '';
     }
 
-    $requete = $bdd->prepare("INSERT INTO users VALUES(1, :prenom, :nom, :email, :password, :profil)");
+    $requete = $bdd->prepare("INSERT INTO users VALUES(0, :prenom, :nom, :email, :password, 1, :profil)");
     $requete->execute(
         array(
             "prenom" => $firstname,
@@ -64,7 +78,7 @@ if(isset($_POST['save_employe'])){
             "profil" => $profil
         )
     );
-
+mail($email, 'V.parrot : Création de compte', "Bonjour, voici votre mot de passe temporaire : ".$password.".\n Il vous sera demandé de le modifier à la première connexion.");
 }
 
 if(isset($_POST['save_password'])){
@@ -73,16 +87,17 @@ if(isset($_POST['save_password'])){
         $password_employe = $_POST['password'];
         $password_confirm = $_POST['password_confirm'];
         if($password_employe == $password_confirm){
-            $requete_email = $bdd->prepare("SELECT email FROM users WHERE email = $email_password");
+            $requete_email = $bdd->prepare("SELECT email FROM users WHERE email = '$email_password'");
             $requete_email->execute();
             if($requete_email-> rowCount() == 1){
-                $requete_password = $bdd->prepare("UPDATE users SET password = :pass WHERE email = $email_password");
+                $requete_password = $bdd->prepare("UPDATE users SET password = :pass, password_system = 0 WHERE email = '$email_password'");
                 $requete_password->execute(
                     array(
                         "pass" => $password_employe
                     )
                 );
-
+                header("Location:./login.php");
+                exit();
             }
             else{
                 $error_msg = 'Votre email est inconnu.';
@@ -100,6 +115,9 @@ if(isset($_POST['save_password'])){
 // ---------------------------insertion des services---------------------------------
 
 if(isset($_POST['save_service'])){
+    unset($_SESSION["message_save"]);
+    unset($_SESSION["message_delete"]);
+    unset($_SESSION["message_erreur"]);
     $title = $_POST['title'];
     $description = $_POST['description'];
     $price = $_POST['price'];
@@ -110,10 +128,10 @@ if(isset($_POST['save_service'])){
         $image = './uploads/services/'.$title;
         move_uploaded_file($tmpName, $image);
     }
-    else
+    else{
         $image = './assets/images/default_service.jpg';
-
-
+    }
+    try{
     $requete = $bdd->prepare("INSERT INTO services VALUES(0,:service_title, :service_description, :service_price, :image, :service_categorie)");
     $requete->execute(
         array(
@@ -123,14 +141,21 @@ if(isset($_POST['save_service'])){
             "image" => $image,
             "service_categorie" => $categorie
         )
-    );
-    $_SESSION["message_delete"] = "Le service est supprimé";
-    header("Location: ./admin_services.php");
-
+        
+        );
+        $_SESSION["message_save"] = "Le service est rajouté";
+        header("Location:./admin_services.php");
+        }
+        catch(PDOException $e){
+            $_SESSION["message_erreur"] = "Le service n'est pas ajouté";
+            header("Location: ./admin_services.php");
+            }
 }
 //-----------------------------insertion des voitures---------------
 
 if(isset($_POST['save_cars'])){
+    unset($_SESSION["message_save"]);
+    unset($_SESSION["message_delete"]);
     $marque = $_POST['marque'];
     $model = $_POST['model'];
     $kilometers = $_POST['kilometers'];
@@ -138,11 +163,19 @@ if(isset($_POST['save_cars'])){
     $price = $_POST['price'];
     $color = $_POST['color'];
     $energie = $_POST['energie'];
-    $image = $_POST['image'];
-    $galerie = $_POST['galerie'];
+    
+    if(isset($_FILES['file'])){
+        $tmpName = $_FILES['file']['tmp_name'];
+        $title = $_FILES['file']['name'];
+        $image = './uploads/voitures/'.$title;
+        move_uploaded_file($tmpName, $image);
+    }
+    else{
+        $image = './assets/images/default_voiture.jpg';
+    }
 
     //on renregistre la voiture
-    $requete = $bdd->prepare("INSERT INTO cars VALUES(0, :marque, :model, :kilometers, :years, :price, :color, :energie, :image, :galerie)");
+    $requete = $bdd->prepare("INSERT INTO cars VALUES(0, :marque, :model, :kilometers, :years, :price, :color, :energie, :image)");
     $requete->execute(
         array(
             "marque" => $marque,
@@ -152,10 +185,11 @@ if(isset($_POST['save_cars'])){
             "price" => $price,
             "color" => $color,
             "energie" => $energie,
-            "image" => $image,
-            "galerie" => $galerie
+            "image" => $image
         )
-        );
+    );
+    $_SESSION["message_save"] = "La voiture est rajoutée";
+    header("Location:./admin_cars.php");
     //on recupere l'id de la voiture qu'on vient de créer
     $requete = $bdd->prepare("SELECT max(car_id) as id_max FROM cars");
     $requete->execute();
@@ -320,3 +354,24 @@ if(isset($_POST['send_avis'])){
         )
     );
 } 
+
+if(isset($_POST['save_rdv'])){
+    $lastname = $_POST['lastname'];
+    $firstname = $_POST['firstname'];
+    $categorie = $_POST['categorie'];
+    $comment = $_POST['comment'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+
+    $requete = $bdd->prepare("INSERT INTO rdv VALUES(0, :lastname, :firstname, :categorie, :comment, :phone, :email)");
+    $requete->execute(
+        array(
+            "lastname" => $lastname,
+            "firstname" => $firstname,
+            "categorie" => $categorie,
+            "comment" => $comment,
+            "phone" => $phone,
+            "email" => $email
+        )
+        );
+}

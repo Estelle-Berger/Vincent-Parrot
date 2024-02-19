@@ -139,3 +139,9 @@ input[type="range"]:active::-webkit-slider-thumb{
     color: black;
 }
 
+.traiter_rdv:visited{
+    background-color: rgb(0, 231, 127);
+}
+.traiter_rdv:active{
+    background-color:rgb(0, 231, 127) ;
+}

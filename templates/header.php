@@ -32,7 +32,7 @@
                         <li class="nav-item"><a href="index.php" class="nav-link px-2">Accueil</a></li>
                         <li class="nav-item"><a href="services.php" class="nav-link px-2">Services</a></li>
                         <li class="nav-item"><a href="cars.php" class="nav-link px-2">Voitures d'occasion</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2">Contact</a></li>
+                        <li class="nav-item"><a href="form_rdv.php" class="nav-link px-2">Contact</a></li>
                         <li class="nav-item"><a href="avis.php" class="nav-link px-2">Avis</a></li>
                         <li>
                             <?php 
@@ -55,11 +55,11 @@
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Employe</a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="admin_cars.php">Gestion des voitures d'occasion</a></li>
-                                        <li><a class="dropdown-item" href="admin_services.php">Gestion des services</a></li>
+                                        <li><a class="dropdown-item" href="admin_avis.php">Gestion des avis</a></li>
                                     </ul>
                             <?php }}?>
                     </ul>
-                    <a href="./login.php" class="btn btn-outline-secondary" type="submit">Connexion</a>
+                    <a href="./login.php" class="btn btn-outline-secondary" type="submit">Espace<br>professionnel</a>
                 </div>
             </div>
         </nav>

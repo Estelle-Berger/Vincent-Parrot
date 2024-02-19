@@ -6,7 +6,7 @@
     $listeOptions = $requete->fetchAll();
 ?>
 <div class="container-fluid">
-    <form method="POST" action="./admin_car.php">
+    <form method="POST" action="./admin_car.php" enctype="multipart/form-data">
         <legend>Création de voitures d'ocassions</legend>
         <div class="p-2 border rounded-2">
             <div class="row">
@@ -52,7 +52,7 @@
             </div>
             <div class="py-2">
                 <label for="file">Choix d'image principal</label>
-                <input class="px-2" type="file" name="image">
+                <input class="px-2" type="file" name="file">
             </div>
             <h3>Les options</h3>
             <div class="d-flex justify-content-evenly gap-2 flex-wrap">

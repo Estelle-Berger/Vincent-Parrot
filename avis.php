@@ -11,9 +11,9 @@
         <?php foreach($save_avis as $avis){  ?>
         <div class="d-flex justify-content-center flex-wrap">
             <div class="p-2 col">
-                <div class="card">
+                <div class="card" style="width: 20em;">
                     <div class="d-flex jutify-content-between card-header">
-                        <div class="col-11 d-flex align-items-center"><h2><?=$avis['avis_save'];?></h2></div>
+                        <div class="col-10 d-flex align-items-center"><h2><?=$avis['avis_save'];?></h2></div>
                         <div class="col-1 text-end">
                             <div class="d-flex align-self-center">
                                 <p class="border rounded p-2"><?=$avis['note_save'];?>/5</p>
@@ -22,7 +22,7 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"><?=$avis['name_save'];?></h5>
-                        <p class="card-text">" <?=$avis['comment_save'];?> "</p>
+                        <p class="card-text avis">" <?=$avis['comment_save'];?> "</p>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,14 @@ $cars =$requete->fetchAll();
 </div>
 <?php if(isset($_SESSION['message_delete'])){?>
         <div class="alert alert-danger" role="alert"><?=$_SESSION['message_delete'];?></div>
-        <?php } ?>
+        <?php 
+    unset($_SESSION["message_delete"]);
+} ?>
+<?php if(isset($_SESSION['message_save'])){?>
+        <div class="alert alert-success" role="alert"><?=$_SESSION['message_save'];?></div>
+        <?php 
+    unset($_SESSION["message_save"]);
+} ?>
 <div class="px-5">
     <table class="table">
     <thead>

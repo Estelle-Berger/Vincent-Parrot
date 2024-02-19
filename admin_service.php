@@ -2,7 +2,7 @@
     require_once('./templates/header.php');
 ?>
 <div class="container-fluid">
-        <form method="POST" action="./admin_services.php">
+        <form method="POST" action="./admin_services.php" enctype="multipart/form-data">
             <legend class="p-3 px-5 text-decoration-underline">Création de services</legend>
             <div class="p-2 border rounded-2">
                 <label for="categorie"class="form-label">Type de service</label>

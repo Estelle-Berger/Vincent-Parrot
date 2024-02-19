@@ -3,6 +3,7 @@
     require_once('./lib/config.php');
 
 #----------------récuperation des services-----------------
+
 $requete = $bdd->prepare("SELECT b.categorie_name, a.service_title, a.service_price, a.service_id FROM services a
 left join categories b on a.service_categorie = b.categorie_id");
 $requete->execute();
@@ -10,11 +11,23 @@ $services =$requete->fetchAll();
 ?>
 
 <div class="p-3 d-flex justify-content-start">
-    <a href="./admin_service.php" class="btn btn-outline-success bouton" type="submit">Nouveau service</a>
+    <a href="./admin_service.php" class="btn btn-outline-secondary bouton" type="submit">Nouveau service</a>
 </div>
+<?php if(isset($_SESSION['message_save'])){?>
+        <div class="alert alert-success" role="alert"><?=$_SESSION['message_save'];?></div>
+        <?php 
+    unset($_SESSION["message_save"]);
+} ?>
+<?php if(isset($_SESSION['message_erreur'])){?>
+        <div class="alert alert-danger" role="alert"><?=$_SESSION['message_erreur'];?></div>
+        <?php 
+    unset($_SESSION["message_erreur"]);
+} ?>
 <?php if(isset($_SESSION['message_delete'])){?>
         <div class="alert alert-danger" role="alert"><?=$_SESSION['message_delete'];?></div>
-        <?php } ?>
+        <?php 
+    unset($_SESSION["message_delete"]);
+} ?>
 <div class="px-5">
     <table class="table">
     <thead>

@@ -59,8 +59,8 @@ $services_ent = $requete->fetchAll();
             </div>
             <?php } ?>
             </div>
-            <div class="p-2 d-flex justify-content-start gap-2 flex-wrap">
             <h2 class="p-3 px-5 text-decoration-underline">Entretien</h2>
+            <div class="p-2 d-flex justify-content-evenly gap-2 flex-wrap">
             <?php foreach ($services_ent as $service_ent) {
                     ?>
             <div class="border rounded-2 card" style="width: 18rem;">

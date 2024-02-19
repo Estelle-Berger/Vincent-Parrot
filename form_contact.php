@@ -19,21 +19,9 @@
                             <label for="sujet"class="form-label">Sujet</label>
                             <select class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2"
                                 id="sujet" name="sujet">
-                                <optgroup label="Réparation carrosserie">
-                                    <option>...</option>
-                                    <option>...</option>
-                                    <option>...</option>
-                                </optgroup>
-                                <optgroup label="Réparation mécanique">
-                                    <option>...</option>
-                                    <option>...</option>
-                                    <option>...</option>
-                                </optgroup>
-                                <optgroup label="Entretien">
-                                    <option>...</option>
-                                    <option>...</option>
-                                    <option>...</option>
-                                </optgroup>
+                                    <option>Réparation carrosserie</option>
+                                    <option>Réparation mécanique</option>
+                                    <option>Entretien</option>
                             </select>
                         </div>
                     </div>

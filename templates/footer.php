@@ -7,7 +7,7 @@ $times = $requete->fetchAll();
 ?>
 
 <div class="container-fluid">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center my-2 border-top">
+    <footer class="d-flex flex-wrap justify-content-evenly align-items-center my-2 border-top">
         <div>
             <table class="table">
                 <thead>

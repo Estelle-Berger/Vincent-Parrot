@@ -1,7 +1,7 @@
 
 <div class="m-2 container-fluid">
     <form method="post" action="">
-        <legend>Laisser un avis :</legend>
+        <legend class="d-flex justify-content-center">Laisser un avis :</legend>
             <div class="p-2 d-flex justify-content-center">
                 <div class=" border rounded">
                     <div class="p-2 d-flex justify-content-between">

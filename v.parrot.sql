@@ -11,11 +11,12 @@ INSERT INTO profils VALUES(1, 'Administrateur');
 INSERT INTO profils VALUES(2, 'Employé');
 
 CREATE TABLE users(
-    user_id INT(11)NOT NULL PRIMARY KEY,
+    user_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,
     firstname VARCHAR(255) NOT NULL,
     lastname VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
+    password_system TINYINT NOT NULL,
     profil_categorie INT,
     FOREIGN KEY (profil_categorie)REFERENCES profils(profil_id)
 );
@@ -87,4 +88,14 @@ CREATE TABLE save_avis(
     note_save VARCHAR (255) NOT NULL,
     name_save VARCHAR (255) NOT NULL,
     comment_save VARCHAR (255) NOT NULL
+);
+
+CREATE TABLE rdv(
+    rdv_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    firstname VARCHAR (255) NOT NULL,
+    lastname VARCHAR (255) NOT NULL,
+    categorie VARCHAR (255) NOT NULL,
+    comment VARCHAR (255) NOT NULL,
+    phone VARCHAR (255) NOT NULL,
+    email VARCHAR (255) NOT NULL
 );
