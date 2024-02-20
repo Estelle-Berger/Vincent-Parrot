@@ -47,6 +47,7 @@
                                     <li><a class="dropdown-item header-a" href="admin_rdv.php">Gestion des rendez-vous</a></li>
                                     <li><a class="dropdown-item header-a" href="admin_avis.php">Gestion des avis</a></li>
                                     <li><a class="dropdown-item header-a" href="admin_employes.php">Gestion des employés</a></li>
+                                    <li><a class="dropdown-item header-a" href="admin_times.php">Gestion des horaires d'ouverture</a></li>
                                     </ul>
                                 </li>
                             <?php }
