@@ -1,26 +1,30 @@
 <?php 
     require_once('./templates/header.php');
+    require_once('lib/config.php');
+
+    $requete = $bdd->prepare("SELECT * FROM rdv WHERE deal = 0");
+    $requete->execute();
+    $rdvAll = $requete->fetchAll();
 ?>
 <div class="m-2 container-fluid">
     <h1>Gérer les rendez-vous des clients</h1>
-    <div class="row d-flex jutify-content-center">
-        <div class="d-flex justify-content-center flex-wrap">
-            <div class="col-6 p-3">
-                <div class="card w-75 m-3">
+    <div class="p-2 row d-flex justify-content-evenly gap-2 flex-wrap">
+        <div class="d-flex justify-content-evenly gap-2 flex-wrap">
+            <?php foreach ($rdvAll as $rdv){?>
+                <div class="card" style="width: 18rem;">
                     <div class="d-flex jutify-content-between card-header">
-                        <div class="col-8 d-flex align-items-center"><h2>Sujet</h2></div>
-                        <div class="col-4 text-end">
-                            <div class=" border rounded p-2">
-                                <p class="border-bottom">Traité</p>
-                                <p>Nom employé</p>
+                        <div class="col-6 d-flex align-items-center"><h2><?=$rdv['categorie'];?></h2></div>
+                        <div class="col-6 text-end">
+                            <div class="p-2">
+                                <p><?=$rdv['dealby'];?></p>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">Message</p>
-                        <p>Nom du client :</p>
-                        <p>Mail :</p>
-                        <p>Téléphone :</p>
+                        <p class="card-text"><b>Message :</b> <?=$rdv['comment'];?></p>
+                        <p><b>Nom du client :</b> <?=$rdv['lastname'];?></p>
+                        <p><b>Mail :</b> <a class="header-a" href="mailto:<?=$rdv['email'];?>"><?=$rdv['email'];?></a></p>
+                        <p><b>Téléphone :</b> <?=$rdv['phone'];?></p>
                     </div>
                     <div class="d-flex flex-row-reverse">
                         <div class="p-2">   
@@ -28,32 +32,9 @@
                         </div> 
                     </div>
                 </div>
-            </div>
-            <div class="col-6 p-3">
-                <div class="card w-75 m-3">
-                    <div class="d-flex jutify-content-between card-header">
-                        <div class="col-8 d-flex align-items-center"><h2>Sujet</h2></div>
-                        <div class="col-4 text-end">
-                            <div class="border rounded p-2">
-                                <p class="border-bottom">Traité</p>
-                                <p>Nom employé</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Message</p>
-                        <p>Nom du client :</p>
-                        <p>Mail :</p>
-                        <p>Téléphone :</p>
-                    </div>
-                    <div class="d-flex flex-row-reverse">
-                        <div class="p-2">   
-                            <a href="#" class="btn btn-secondary">Supprimer</a>
-                        </div> 
-                    </div>
-                </div>
-            </div>
+            <?php }?>
         </div>
+    
     </div>
 </div>
 

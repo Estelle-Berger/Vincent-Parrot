@@ -45,7 +45,7 @@ $services =$requete->fetchAll();
             <td><?=$service['categorie_name'];?></td>
             <td><?=$service['service_title'];?></td>
             <td><?=$service['service_price']; ?></td>
-            <td><a href="./lib/delete_service.php?id=<?=$service['service_id']?>">Supprimer</a></td>
+            <td><a href="./lib/delete_service.php?id=<?=$service['service_id']?>" class="header-a">Supprimer</a></td>
         </tr>
         <?php } ?>
     </tbody>

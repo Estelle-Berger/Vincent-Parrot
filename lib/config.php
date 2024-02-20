@@ -40,14 +40,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST" AND isset($_POST['valid_login'])){
                 exit(); 
             }
             else{
-            session_destroy();
-            session_start();
-            $_SESSION["isLogged"]=true;
-            $_SESSION["User_Profil"]=$user['profil_categorie'];
-            
-            header("Location: ./admin_cars.php");
-            exit(); 
-        }
+                session_destroy();
+                session_start();
+                $_SESSION["isLogged"]=true;
+                $_SESSION["lastname"]=$user['lastname'];
+                $_SESSION["User_Profil"]=$user['profil_categorie'];
+                
+                header("Location: ./admin_cars.php");
+                exit(); 
+            }
         }
         else{
             $error_msg = "Email ou mot de passe incorrect !";
@@ -57,6 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" AND isset($_POST['valid_login'])){
 // ----------------insertion des employés par l'administrateur---------------------------------
 
 if(isset($_POST['save_employe'])){
+    unset($_SESSION[$error_msg]);
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $email = $_POST['email'];
@@ -363,7 +365,33 @@ if(isset($_POST['save_rdv'])){
     $phone = $_POST['phone'];
     $email = $_POST['email'];
 
-    $requete = $bdd->prepare("INSERT INTO rdv VALUES(0, :lastname, :firstname, :categorie, :comment, :phone, :email)");
+    $requete = $bdd->prepare("INSERT INTO rdv VALUES(0, :lastname, :firstname, :categorie, :comment, :phone, :email, 1,'')");
+    $requete->execute(
+        array(
+            "lastname" => $lastname,
+            "firstname" => $firstname,
+            "categorie" => $categorie,
+            "comment" => $comment,
+            "phone" => $phone,
+            "email" => $email
+        )
+        );
+}
+// ----------------------------recuperer rendez-vous------------------------------
+$requete = $bdd->prepare("SELECT * FROM rdv");
+    $requete->execute();
+    $rdvAll = $requete->fetchAll();
+
+    
+if(isset($_POST['send_cars'])){
+    $lastname = $_POST['lastname'];
+    $firstname = $_POST['firstname'];
+    $categorie = $_POST['marque'];
+    $comment = $_POST['comment'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+
+    $requete = $bdd->prepare("INSERT INTO rdv VALUES(0, :lastname, :firstname, :categorie, :comment, :phone, :email, 1,'')");
     $requete->execute(
         array(
             "lastname" => $lastname,

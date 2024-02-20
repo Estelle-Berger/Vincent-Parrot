@@ -27,7 +27,7 @@ $listeOptions = $requete->fetchAll();
                     placeholder="nouvelle option..." id="option" name="option">
                 </div>
                 <div class="p-2">
-                    <button type="submit" name="save_options">Valider</button>
+                    <button type="submit" class="btn btn-outline-secondary" name="save_options">Valider</button>
                 </div>
             </div>
         </div>

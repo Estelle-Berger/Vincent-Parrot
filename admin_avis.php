@@ -9,13 +9,13 @@
 ?>
 
 <div class="container-fluid">
-    <div class="d-flex justify-content-evenly gap-2 flex-wrap">
+    <div class="d-flex justify-content-center gap-2 flex-wrap">
         <?php foreach($send_avis as $avis){ ?>
-        <div class="d-flex justify-content-center flex-wrap">
-            <div class="p-2 col">
+        <div class="d-flex justify-items-center flex-wrap">
+            <div class="p-2">
                 <div class="card">
                     <div class="d-flex jutify-content-between card-header">
-                        <div class="col-11 d-flex align-items-center"><h2 name="avis_save"><?=$avis['avis'];?></h2></div>
+                        <div class="col-10 d-flex align-items-center"><h2 name="avis_save"><?=$avis['avis'];?></h2></div>
                         <div class="col-1 text-end">
                             <div class="d-flex align-self-center">
                                 <p class="border rounded p-2" name="note_save"><?=$avis['note'];?>/5</p>
@@ -31,7 +31,7 @@
                             <a href="./lib/save_avis.php?id=<?=$avis['send_avis_id']; ?>" class="btn btn-outline-secondary" role="button">Valider</a>
                         </div>
                         <div class="d-flex flex-row-reverse p-2 gap-2">
-                            <a href="./lib/delete_avis.php?id=<?=$avis['send_avis_id'];?>" class="btn btn-outline-secondary" role="button">Supprimer</a>
+                            <a href="./lib/delete_avis.php?id=<?=$avis['send_avis_id'];?>" class="btn btn-outline-danger" role="button">Supprimer</a>
                         </div>
                     </div>
                 </div>

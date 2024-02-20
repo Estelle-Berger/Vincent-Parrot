@@ -1,3 +1,4 @@
+
 body{
     margin: 0px;
     padding: 0px;
@@ -11,10 +12,18 @@ h1, h2{
 .avis{
     font-family: 'Hina Mincho', serif;
 }
-.nav-underline .nav-link.active, .nav-underline .show>.nav-link, .nav-link:hover, a{
+.nav-underline .nav-link.active, .nav-underline .show>.nav-link, .nav-link:hover{
     color: #d01110 !important;
     font-weight: normal;
-    
+}
+.header-a {
+    color: #d01110 !important;
+}
+header{
+    background-color: #ebe8e0;
+}
+.fond{
+    background-color: #ebe8e0;
 }
 .img-border-radius{
     height: 200px;
@@ -22,6 +31,7 @@ h1, h2{
 }
 footer{
     color: #0A0A00;
+    background-color: #ebe8e0;
 }
 .star:hover {
 	cursor: pointer;
@@ -45,13 +55,13 @@ footer{
 .filter{
     position: relative;
     width: 100%;
-    background-color: #fbfffd;
+    /* background-color: #fbfffd; */
     padding: 50px 40px 20px 40px;
 }
 
 .container{
     position: relative;
-    width: 35%;
+    width: 100%;
     height: 50px;
 }
 
@@ -120,17 +130,15 @@ input[type="range"]::-ms-thumb{
     width: 1.7em;
     cursor: pointer;
     border-radius: 50%;
-    background-color: rgb(94, 204, 31);
     pointer-events: auto;
 }
 
 input[type="range"]:active::-webkit-slider-thumb{
-    background-color: #a8bbb0;
     border: 2px solid #d01110;
 }
 
 .values{
-    width: 30%;
+    width: 50%;
     position: relative;
     margin: auto;
     text-align: center;

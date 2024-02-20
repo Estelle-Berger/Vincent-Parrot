@@ -38,9 +38,9 @@ $services_ent = $requete->fetchAll();
                 <div class="border rounded-2 card" style="width: 18rem;">
                     <img src="<?=$service_carro['service_image']?>" class="card-img-top" alt="<?=$service_carro['service_title']?>">
                     <div class="card-body">
-                        <h5 class="card-title"><?=$service_carro['service_title']?></h5>
+                        <h5 class="card-title fw-bold"><?=$service_carro['service_title']?></h5>
                         <p class="card-text"><?=$service_carro['service_description']?></p>
-                        <p><?=$service_carro['service_price']?></p>
+                        <p class="fw-bold"><?=$service_carro['service_price']?></p>
                     </div>
                 </div>
                 <?php } ?>
@@ -52,9 +52,9 @@ $services_ent = $requete->fetchAll();
             <div class="border rounded-2 card" style="width: 18rem;">
                 <img src="<?=$service_meca['service_image']?>" class="card-img-top" alt="<?=$service_meca['service_title']?>">
                 <div class="card-body">
-                    <h5 class="card-title"><?=$service_meca['service_title']?></h5>
+                    <h5 class="card-title fw-bold"><?=$service_meca['service_title']?></h5>
                     <p class="card-text"><?=$service_meca['service_description']?></p>
-                    <p><?=$service_meca['service_price']?></p>
+                    <p class="fw-bold"><?=$service_meca['service_price']?></p>
                 </div>
             </div>
             <?php } ?>
@@ -66,9 +66,9 @@ $services_ent = $requete->fetchAll();
             <div class="border rounded-2 card" style="width: 18rem;">
                 <img src="<?=$service_ent['service_image']?>" class="card-img-top" alt="<?=$service_ent['service_title']?>">
                 <div class="card-body">
-                    <h5 class="card-title"><?=$service_ent['service_title']?></h5>
+                    <h5 class="card-title fw-bold"><?=$service_ent['service_title']?></h5>
                     <p class="card-text"><?=$service_ent['service_description']?></p>
-                    <p><?=$service_ent['service_price']?></p>
+                    <p class="fw-bold"><?=$service_ent['service_price']?></p>
                 </div>
             </div>
             <?php } ?>

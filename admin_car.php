@@ -16,9 +16,9 @@
                     placeholder="Marque..." id="marque" name="marque" >
                 </div>
                 <div class="col">
-                    <label for="model" class="form-label">Marque</label>
+                    <label for="model" class="form-label">Modele</label>
                     <input type="text" class="form-control d-inline-flex focus-ring focus-ring-secondary py-1 px-2 text-decoration-none border rounded-2"
-                    placeholder="Model..." id="model" name="model" >
+                    placeholder="Modele..." id="model" name="model" >
                 </div>
             </div>
             <div class="row">

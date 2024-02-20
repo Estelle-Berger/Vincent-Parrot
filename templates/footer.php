@@ -6,8 +6,8 @@ $requete->execute();
 $times = $requete->fetchAll();
 ?>
 
-<div class="container-fluid">
-    <footer class="d-flex flex-wrap justify-content-evenly align-items-center my-2 border-top">
+<div>
+    <footer class="p-2 d-flex flex-wrap justify-content-evenly align-items-center my-2 border-top">
         <div>
             <table class="table">
                 <thead>
@@ -30,7 +30,8 @@ $times = $requete->fetchAll();
             </table>
         </div>
         <div>
-            <a href="mentions-legales.php" class="link-dark" role="button" style="text-decoration: none;">Mention légale</a><br> 
+            <a href="mention_legale.php" class="link-dark" role="button" style="text-decoration: none;">Mention légale</a><br>
+            <a href="politique_confidentialite.php" class="link-dark" role="button" style="text-decoration: none;">Politique de confidentialité</a>
         </div>
         <div class="col-md-4 d-flex justify-content-end align-items-center">
             <a href="index.php" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">

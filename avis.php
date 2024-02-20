@@ -11,7 +11,7 @@
         <?php foreach($save_avis as $avis){  ?>
         <div class="d-flex justify-content-center flex-wrap">
             <div class="p-2 col">
-                <div class="card" style="width: 20em;">
+                <div class="card" style="width: 20rem;">
                     <div class="d-flex jutify-content-between card-header">
                         <div class="col-10 d-flex align-items-center"><h2><?=$avis['avis_save'];?></h2></div>
                         <div class="col-1 text-end">

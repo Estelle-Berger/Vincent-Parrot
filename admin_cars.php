@@ -26,7 +26,7 @@ $cars =$requete->fetchAll();
     <thead>
         <tr>
             <th scope="col">Marque</th>
-            <th scope="col">Model</th>
+            <th scope="col">Modele</th>
             <th scope="col">Tarif</th>
             <th scope="col">Supprimer</th>
         </tr>
@@ -37,8 +37,8 @@ $cars =$requete->fetchAll();
         <tr>
             <td><?=$car['marque'];?></td>
             <td><?=$car['model'];?></td>
-            <td><?=$car['price']; ?></td>
-            <td><a href="./lib/delete_car.php?id=<?=$car['car_id']?>">Supprimer</a></td>
+            <td><?=$car['price']; ?> €</td>
+            <td><a href="./lib/delete_car.php?id=<?=$car['car_id']?>"class="header-a">Supprimer</a></td>
         </tr>
         <?php } ?>
     </tbody>

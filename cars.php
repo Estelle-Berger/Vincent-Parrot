@@ -1,58 +1,86 @@
 <?php 
     require_once('./templates/header.php');
     require_once('./lib/config.php');
-    $requete = $bdd->prepare("SELECT * FROM cars");
+    $requete = $bdd->prepare("SELECT MIN(CONVERT(Years,int)) as minYear, MAX(CONVERT(Years,int)) as maxYear, MIN(CONVERT(Price,float)) as minPrice, MAX(CONVERT(Price,float)) as maxPrice, MIN(CONVERT(Kilometers,float)) as minKm, MAX(CONVERT(Kilometers,float)) as maxKm FROM cars");
     $requete->execute();
-    $cars=$requete->fetchAll();
+    $filters = $requete->fetch();
 ?>
 
 <div class="m-2 container-fluid">
-    <h1 class="p-2">Voiture d'occasion</h1>
-    <div class="filter-cars">
-        <div class="filter">
-            <div class="text-center"><h6 class="fw-bold text-decoration-underline">Kilométrage</h6></div>
-            <div class="values">
-                <span id="range1"></span>
-                <span>km - </span>
-                <span id="range2"></span>
-                <span>km</span>
-            </div>
-            <div class="container d-flex justify-content-center">
-                <div class="slider-track"></div>
-                <input type="range" min="10020" max="255065" 
-                value="10020" id="slider-min" oninput="slideOne()">
-                <input type="range" min="10020" max="255065" 
-                value="255065" id="slider-max" oninput="slideTwo()">
-            </div>
-            <div class="d-flex justify-content-center">
-                <input class="d-flex justify-content-center" type="reset" value="Reinisialiser">
-            </div>
-        </div>
-    </div>
-
-
-    <div class="d-flex justify-content-evenly gap-2 flex-wrap">
-    <?php foreach ($cars as $car){?>
-        <div class="d-flex justify-content-center flex-wrap">
-            <div class="p-2 col">
-                <div class="card" style="width: 18rem;">
-                    <img src="<?=$car['image'];?>" class="card-img-top" alt="...">
-                    <div class="px-2 card-body">
-                        <h5><?=$car['marque'];?></h5>
-                        <h6><?=$car['model'];?></h6>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="px-2 list-group-item"><div><?=$car['years'];?> Mise en circulation<br><?=$car['kilometers'];?> kilomètres</div></li>
-                        <li class="px-2 list-group-item"><div><?=$car['energie'];?><br>Automatique</div></li>
-                        <li class="px-2 list-group-item"><?=$car['price'];?></li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="car.php?car_id=<?=$car['car_id'];?>" class="card-link">Voir le véhicule</a>
-                    </div>
+    <h1 class="p-2">Voitures d'occasion</h1>
+    <div class="filter-cars d-flex justify-content-evenly flex-wrap">
+        <div class="row filter d-flex flex-wrap">
+<!-- ------------------ Filtre Km ---------------------------- -->
+            <div class="col-4">
+                <div class="text-center">
+                    <h6 class="fw-bold text-decoration-underline">Kilométrage</h6>
+                </div>
+                <div class="values">
+                    <span id="range1-km"></span>
+                    <span>km - </span>
+                    <span id="range2-km"></span>
+                    <span>km</span>
+                </div>
+                <div class="container d-flex justify-content-center">
+                    <div id="slider-track-km" class="slider-track"></div>
+                    <input type="range" min="<?= $filters['minKm']?>" max="<?= $filters['maxKm']?>" 
+                    value="<?= $filters['minKm']?>" id="slider-min-km" oninput="slideOneKm()">
+                    <input type="range" min="<?= $filters['minKm']?>" max="<?= $filters['maxKm']?>" 
+                    value="<?= $filters['maxKm']?>" id="slider-max-km" oninput="slideTwoKm()">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <input class="d-flex justify-content-center" type="reset" value="Réinitialiser" onclick="ResetSilderKm()">
                 </div>
             </div>
-        </div>
-        <?php }?>
+<!-- ------------------ Filtre Year ---------------------------- -->
+            <div class="col-4">
+                <div class="text-center">
+                    <h6 class="fw-bold text-decoration-underline">Année</h6>
+                </div>
+                <div class="values">
+                    <span id="range1-Year"></span>
+                    <span> - </span>
+                    <span id="range2-Year"></span>
+                </div>
+                <div class="container d-flex justify-content-center">
+                    <div id="slider-track-Year" class="slider-track"></div>
+                    <input type="range" min="<?= $filters['minYear']?>" max="<?= $filters['maxYear']?>" 
+                    value="<?= $filters['minYear']?>" id="slider-min-Year" oninput="slideOneYear()">
+                    <input type="range" min="<?= $filters['minYear']?>" max="<?= $filters['maxYear']?>" 
+                    value="<?= $filters['maxYear']?>" id="slider-max-Year" oninput="slideTwoYear()">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <input class="d-flex justify-content-center" type="reset" value="Réinitialiser" onclick="ResetSilderYear()">
+                </div>
+            </div>
+<!-- ------------------ Filtre Price ---------------------------- -->
+            <div class="col-4">
+                <div class="text-center">
+                    <h6 class="fw-bold text-decoration-underline">Prix</h6>
+                </div>
+                <div class="values">
+                    <span id="range1-Price"></span>
+                    <span> € - </span>
+                    <span id="range2-Price"></span>
+                    <span> €</span>
+                </div>
+                <div class="container d-flex justify-content-center">
+                    <div id="slider-track-Price" class="slider-track"></div>
+                    <input type="range" min="<?= $filters['minPrice']?>" max="<?= $filters['maxPrice']?>" 
+                    value="<?= $filters['minPrice']?>" id="slider-min-Price" oninput="slideOnePrice()">
+                    <input type="range" min="<?= $filters['minPrice']?>" max="<?= $filters['maxPrice']?>" 
+                    value="<?= $filters['maxPrice']?>" id="slider-max-Price" oninput="slideTwoPrice()">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <input class="d-flex justify-content-center" type="reset" value="Réinitialiser" onclick="ResetSilderPrice()">
+                </div>
+            </div>
+        </div> 
+    </div>             
+
+
+
+    <div class="filter_data d-flex justify-content-evenly gap-2 flex-wrap">
     </div>
 </div>
 

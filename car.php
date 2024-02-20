@@ -11,20 +11,20 @@ $cars =$requete->fetchAll();
 ?>
 
 <div class="m-2 container-fluid">
-    <div class="d-flex justify-content-evenly flex-wrap">
-        <div class="col-6">
+    <div class="p-2 row d-flex justify-content-evenly flex-wrap">
+        <div class="col">
             <div class="p-2">
                 <?php foreach($cars as $car){?>
                 <h1><?=$car['marque'];?></h1>
             </div>
             <div class="p-2 d-flex justify-content-center">
-                <img src="<?=$car['image'];?>" alt="">
+                <img src="<?=$car['image'];?>"  width="100%" height="100%" alt="<?=$car['marque'];?>">
             </div>
         </div>
-        <div class="p-2 col-3">
+        <div class="p-2 col">
             <div class="col">
-                <label for="text"class="form-label">Marque</label>
-                <p class="text-center border rounded"><?=$car['marque'];?></p>
+                <label for="text"class="form-label">Modele</label>
+                <p class="text-center border rounded"><?=$car['model'];?></p>
             </div>
             <div class="col">
                 <label for="text"class="form-label">Mise en circulation</label>
@@ -50,7 +50,7 @@ $cars =$requete->fetchAll();
                 $requete->execute();
                 $options =$requete->fetchAll();
                 ?>
-            <div class="p-2 col-3">
+            <div class="p-2 col">
                 <label for="text"class="form-label">Options</label>
                 <ul class="text-start border rounded">
                 <?php foreach($options as $option){?>
