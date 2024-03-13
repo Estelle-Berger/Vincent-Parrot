@@ -73,21 +73,22 @@ CREATE TABLE options_cars(
     PRIMARY KEY (option_id, car_id)
 );
 
-CREATE TABLE send_avis(
-    send_avis_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE avis(
+    avis_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,
     avis VARCHAR (255) NOT NULL,
     note VARCHAR (255) NOT NULL,
     name VARCHAR (255) NOT NULL,
-    comment VARCHAR (255) NOT NULL
+    comment VARCHAR (255) NOT NULL,
+    is_valid TINYINT NOT NULL
 );
 
-CREATE TABLE save_avis(
-    save_avis_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    avis_save VARCHAR (255) NOT NULL,
-    note_save VARCHAR (255) NOT NULL,
-    name_save VARCHAR (255) NOT NULL,
-    comment_save VARCHAR (255) NOT NULL
-);
+-- CREATE TABLE save_avis(
+--     save_avis_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,
+--     avis_save VARCHAR (255) NOT NULL,
+--     note_save VARCHAR (255) NOT NULL,
+--     name_save VARCHAR (255) NOT NULL,
+--     comment_save VARCHAR (255) NOT NULL
+-- );
 
 CREATE TABLE rdv(
     rdv_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,

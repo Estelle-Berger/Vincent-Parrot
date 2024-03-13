@@ -8,6 +8,7 @@
             <div class="d-flex justify-content-center">
                 <div class="p-2 border rounded d-flex justify-content-center">
                     <div class="col">
+                    <input type="hidden" name="token" value="<?=htmlspecialchars($_SESSION['token']);?>">
                         <div class="p-2">
                             <label for="email"class="form-label">Email*</label>
                             <input type="text"class="form-control d-inline-flex focus-ring focus-ring-dark text-decoration-none border rounded-2"

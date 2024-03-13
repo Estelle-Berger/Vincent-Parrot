@@ -1,7 +1,7 @@
 <?php 
     require_once('./templates/header.php');
     require_once('./lib/config.php');
-    $requete = $bdd->prepare("SELECT * FROM save_avis");
+    $requete = $bdd->prepare("SELECT * FROM avis WHERE is_valid = 0");
     $requete->execute();
     $save_avis = $requete->fetchAll();
 ?>
@@ -13,16 +13,16 @@
             <div class="p-2 col">
                 <div class="card" style="width: 20rem;">
                     <div class="d-flex jutify-content-between card-header">
-                        <div class="col-10 d-flex align-items-center"><h2><?=$avis['avis_save'];?></h2></div>
+                        <div class="col-10 d-flex align-items-center"><h2><?=$avis['avis'];?></h2></div>
                         <div class="col-1 text-end">
                             <div class="d-flex align-self-center">
-                                <p class="border rounded p-2"><?=$avis['note_save'];?>/5</p>
+                                <p class="border rounded p-2"><?=$avis['note'];?>/5</p>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title"><?=$avis['name_save'];?></h5>
-                        <p class="card-text avis">" <?=$avis['comment_save'];?> "</p>
+                        <h5 class="card-title"><?=$avis['name'];?></h5>
+                        <p class="card-text avis">" <?=$avis['comment'];?> "</p>
                     </div>
                 </div>
             </div>

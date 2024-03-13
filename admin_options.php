@@ -21,6 +21,7 @@ $listeOptions = $requete->fetchAll();
         <legend>Création d'option</legend>
         <div class="p-2 border rounded-2">
             <div class="row">
+            <input type="hidden" name="token" value="<?=htmlspecialchars($_SESSION['token']);?>">
                 <div class="col">
                     <label for="option" class="form-label">Nouvelle option</label>
                     <input type="text" class="form-control d-inline-flex focus-ring focus-ring-secondary py-1 px-2 text-decoration-none border rounded-2"

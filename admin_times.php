@@ -6,6 +6,7 @@
 <div class="container-fluid">
     <form method="post" action="">
     <legend>Les horaires d'ouverture</legend>
+    <input type="hidden" name="token" value="<?=htmlspecialchars($_SESSION['token']);?>">
     <label name="Lundi" class="px-3 text-start">Lundi</label>
     <div class="d-flex justify-content-evenly gap-2 flex-wrap">
         <div class="p-2 col">

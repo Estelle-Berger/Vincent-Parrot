@@ -4,6 +4,7 @@
         <legend class="d-flex justify-content-center">Laisser un avis :</legend>
             <div class="p-2 d-flex justify-content-center">
                 <div class=" border rounded">
+                <input type="hidden" name="token" value="<?=htmlspecialchars($_SESSION['token']);?>">
                     <div class="p-2 d-flex justify-content-between">
                         <div class="col">
                             <label for="avis"class="form-label">Avis</label>
@@ -40,7 +41,7 @@
                         rounded" name="comment" id="comment" cols="20" rows="5"required></textarea>
                     </div>
                     <div class="p-2 d-flex justify-content-center">
-                        <input class="btn btn-outline-secondary" type="submit" id="mybutton" name="send_avis" value="Envoyer" >
+                        <input class="btn btn-outline-secondary" type="submit" id="mybutton" name="avis" value="Envoyer" >
                     </div>
                 </div>
             </div>

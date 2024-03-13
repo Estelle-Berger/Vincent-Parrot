@@ -5,6 +5,7 @@
         <form method="POST" action="./admin_services.php" enctype="multipart/form-data">
             <legend class="p-3 px-5 text-decoration-underline">Création de services</legend>
             <div class="p-2 border rounded-2">
+            <input type="hidden" name="token" value="<?=htmlspecialchars($_SESSION['token']);?>">
                 <label for="categorie"class="form-label">Type de service</label>
                 <select class="form-control d-inline-flex focus-ring focus-ring-secondary py-1 px-2 text-decoration-none border rounded-2"
                     id="categorie" name="categorie">

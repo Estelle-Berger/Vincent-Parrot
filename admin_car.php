@@ -10,6 +10,7 @@
         <legend>Création de voitures d'ocassions</legend>
         <div class="p-2 border rounded-2">
             <div class="row">
+            <input type="hidden" name="token" value="<?=htmlspecialchars($_SESSION['token']);?>">
                 <div class="col">
                     <label for="marque" class="form-label">Marque</label>
                     <input type="text" class="form-control d-inline-flex focus-ring focus-ring-secondary py-1 px-2 text-decoration-none border rounded-2"
@@ -24,17 +25,17 @@
             <div class="row">
                 <div class="col">
                     <label for="kilometers" class="form-label">Kilomètrage</label>
-                    <input type="text" class="form-control d-inline-flex focus-ring focus-ring-secondary py-1 px-2 text-decoration-none border rounded-2"
+                    <input type="tel" class="form-control d-inline-flex focus-ring focus-ring-secondary py-1 px-2 text-decoration-none border rounded-2"
                     placeholder="Kilomètrage..." id="kilometers" name="kilometers" >
                 </div>
                 <div class="col">
                     <label for="years" class="form-label">Mise en circulation</label>
-                    <input type="text" class="form-control d-inline-flex focus-ring focus-ring-secondary py-1 px-2 text-decoration-none border rounded-2"
+                    <input type="tel" class="form-control d-inline-flex focus-ring focus-ring-secondary py-1 px-2 text-decoration-none border rounded-2"
                     placeholder="Année..." id="years" name="years" >
                 </div>
                 <div class="col">
                     <label for="price" class="form-label">Prix</label>
-                    <input type="text" class="form-control d-inline-flex focus-ring focus-ring-secondary py-1 px-2 text-decoration-none border rounded-2"
+                    <input type="tel" class="form-control d-inline-flex focus-ring focus-ring-secondary py-1 px-2 text-decoration-none border rounded-2"
                     placeholder="Prix..." id="price" name="price" >
                 </div>
             <div class="row">

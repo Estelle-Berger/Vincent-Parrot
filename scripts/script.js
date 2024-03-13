@@ -15,9 +15,7 @@ function onStarClick(event) {
 	}
 }
 const mybutton = document.getElementById("mybutton");
-// mybutton.addEventListener("click",() => {
-//     alert("Votre avis à bien été pris en compte !");
-// });
+
 // ------------------------------caractéristique--------------------------------------------------
 
 // ------------------------------------filtre-----------------------------------------------
