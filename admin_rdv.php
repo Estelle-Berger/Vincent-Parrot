@@ -10,13 +10,16 @@
     <a href="./rdv.php" class="btn btn-outline-secondary bouton" type="submit">Liste des rendez-vous traité</a>
 </div>
 <div class="d-flex justify-content-evenly gap-2 flex-wrap">
-    <?php foreach ($rdvAll as $rdv){?>
+    <?php foreach ($rdvAll as $rdv){
+        foreach($rdv as $key => $value)
+        $rdv[$key] = htmlspecialchars($value, ENT_QUOTES,'UTF-8');?>
+
         <div class="d-flex justify-content-center flex-wrap">
             <div class="p-2 col">
                 <div class="card" style="width: 18rem;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item fw-bold"><?=$rdv['lastname'];?></li>
-                        <li class="list-group-item"><?=$rdv['categorie'];?></li>
+                        <li class="list-group-item"><?=$rdv['category'];?></li>
                         <li class="list-group-item"><?=$rdv['comment'];?></li>
                         <li class="list-group-item"><?=$rdv['phone'];?></li>
                         <li class="list-group-item"><a class="header-a" href="mailto:<?=$rdv['email'];?>"><?=$rdv['email'];?></a></li>

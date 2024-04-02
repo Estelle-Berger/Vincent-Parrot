@@ -4,6 +4,15 @@
 ?>
 <div class="p-2 container-fluid">
     <form method="post" action="">
+    <?php if(isset($_SESSION['error_msg'])){?>
+        <div>
+            <?= $_SESSION["error_msg"] ?>
+        </div>
+
+        <?php unset($_SESSION["message_delete"]);} ?>   
+    <div>
+            
+        </div>
         <legend class="d-flex justify-content-center">Connexion</legend>
             <div class="d-flex justify-content-center">
                 <div class="p-2 border rounded d-flex justify-content-center">

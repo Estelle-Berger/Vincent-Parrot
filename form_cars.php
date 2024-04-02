@@ -26,10 +26,12 @@
                         placeholder="Prénom" id="firstname" name="firstname" required>
                     </div>
                     <div class="col-4">
-                        <?php foreach($cars as $key => $car){?>
-                        <label for="marque"class="form-label">Marques</label>
+                        <?php foreach($cars as $car){
+                            foreach($car as $key => $value)
+                            $car[$key] = htmlspecialchars($value, ENT_QUOTES,'UTF-8');?>
+                        <label for="brand"class="form-label">Marques</label>
                         <input type="text"class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2"
-                        id="marque" name="marque"value="<?=$car['marque'];?>-<?=$car['model'];?> ">
+                        id="brand" name="brand"value="<?=$car['brand'];?>-<?=$car['model'];?>">
                         <?php }?>
                     </div>
                 </div>
@@ -53,7 +55,7 @@
                     </div>
                 </div>
                     <div class="d-flex justify-content-center">
-                        <input class="btn btn-outline-secondary" type="submit" id="mybutton" name="send_cars" value="Envoyer" >
+                        <input class="btn btn-outline-secondary" type="submit" id="mybutton" name="send_cars" value="Envoyer">
                     </div>
             </div>
         </div>

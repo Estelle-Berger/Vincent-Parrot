@@ -1,7 +1,7 @@
 <?php 
     require_once('./templates/header.php');
     require_once('./lib/config.php');
-    $requete = $bdd->prepare("SELECT * FROM avis WHERE deal = 1");
+    $requete = $bdd->prepare("SELECT * FROM avis WHERE is_valid = 1");
     $requete->execute();
     $avis_All = $requete->fetchAll();
 
@@ -10,7 +10,9 @@
 
 <div class="container-fluid">
     <div class="d-flex justify-content-center gap-2 flex-wrap">
-        <?php foreach($avis_All as $avis){ ?>
+        <?php foreach($avis_All as $avis){ 
+            foreach($avis as $key => $value)
+            $avis[$key] = htmlspecialchars($value, ENT_QUOTES,'UTF-8');?>
         <div class="d-flex justify-items-center flex-wrap">
             <div class="p-2">
                 <div class="card">
@@ -27,9 +29,8 @@
                         <p class="card-text" name="comment">" <?=$avis['comment'];?> "</p>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <div class="d-flex flex-row-reverse p-2 gap-2">
-                            <button type="checkbox" value="1" name="avis" class="btn btn-outline-secondary">Valider</button>        
-                            <a href="./lib/save_avis.php?id=<?=$avis['avis_id']; ?>" class="btn btn-outline-secondary" role="button">Valider</a>
+                        <div class="d-flex flex-row-reverse p-2 gap-2">        
+                            <a href="./lib/save_avis.php?id=<?=$avis['avis_id'];?>" class="btn btn-outline-secondary" role="button">Valider</a>
                         </div>
                         <div class="d-flex flex-row-reverse p-2 gap-2">
                             <a href="./lib/delete_avis.php?id=<?=$avis['avis_id'];?>" class="btn btn-outline-danger" role="button">Supprimer</a>
@@ -43,7 +44,7 @@
     <?php }
     else { ?>
     <div class="p-2 d-flex justify-content-center">
-        <p class="border rounded p-2"> AUCUN COMMENTAIRE A MONDERER</p>
+        <p class="border rounded p-2"> AUCUN COMMENTAIRE A MODERER</p>
     </div>
 </div>
 

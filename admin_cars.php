@@ -3,7 +3,7 @@
     require_once('./lib/config.php');
 
 #----------------récuperation des cars-----------------
-$requete = $bdd->prepare("SELECT car_id, marque, model, price FROM cars");
+$requete = $bdd->prepare("SELECT car_id, brand, model, price FROM cars");
 $requete->execute();
 $cars =$requete->fetchAll();
 ?>
@@ -33,9 +33,11 @@ $cars =$requete->fetchAll();
     </thead>
     <tbody>
     <?php 
-        foreach ($cars as $car) {?>
+        foreach ($cars as $car) {
+            foreach($car as $key => $value)
+            $car[$key] = htmlspecialchars($value, ENT_QUOTES,'UTF-8');?>
         <tr>
-            <td><?=$car['marque'];?></td>
+            <td><?=$car['brand'];?></td>
             <td><?=$car['model'];?></td>
             <td><?=$car['price']; ?> €</td>
             <td><a href="./lib/delete_car.php?id=<?=$car['car_id']?>"class="header-a">Supprimer</a></td>

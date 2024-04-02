@@ -8,7 +8,9 @@
 
 <div class="container-fluid">
     <div class="d-flex justify-content-evenly gap-2 flex-wrap">
-        <?php foreach($save_avis as $avis){  ?>
+        <?php foreach($save_avis as $avis){
+                foreach($avis as $key => $value)
+            $avis[$key] = htmlspecialchars($value, ENT_QUOTES,'UTF-8');?>
         <div class="d-flex justify-content-center flex-wrap">
             <div class="p-2 col">
                 <div class="card" style="width: 20rem;">

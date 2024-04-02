@@ -1,3 +1,5 @@
+
+
 let toutesLesEtoiles = $('.stars .star');
 toutesLesEtoiles.click(onStarClick);
 function onStarClick(event) {
@@ -16,16 +18,14 @@ function onStarClick(event) {
 }
 const mybutton = document.getElementById("mybutton");
 
-// ------------------------------caractéristique--------------------------------------------------
-
+// ------------------------------sécurité du mot de passe--------------------------------------------------
+const bcrypt = require('bcryptjs');
 // ------------------------------------filtre-----------------------------------------------
-//fetch data from cars table and display on web page
+//récupération des données de la table et envoyer sur la page web
 function filter_data() {
-        
-        //loading animation while the product doesnt appear on web page
-        //$('.filter_data').html('<div id="loading"></div>');
+        //chargement de l'animation alors que le produit n'apparaît pas sur la page web
         let action = './lib/fetch.php';
-        // get val of mininum and maximum  from sliders
+        // Recupération des valeurs  mininum et maximum des sliders
         let mininum_kilometer = sliderOneKm.value;
         let maximum_kilometer = sliderTwoKm.value;
         let mininum_price = sliderOnePrice.value;
@@ -36,7 +36,7 @@ function filter_data() {
     $.ajax({
         url: "./lib/fetch.php",
         method: "POST",
-        //DEFINE WITH DATA WE WANT TO SEND
+        //defini avec les données que j'envoie
         data: {
             action: action,
             mininum_kilometer: mininum_kilometer,
@@ -46,7 +46,7 @@ function filter_data() {
             mininum_year: mininum_year,
             maximum_year: maximum_year
         },
-        //if ajax request success, il will receive data from server
+        //if ajax request success, il reçoit les données du serveur
         success: function(data) {
             $('.filter_data').html(data);
         }

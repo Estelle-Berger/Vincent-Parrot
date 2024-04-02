@@ -1,7 +1,6 @@
 <?php
 require_once('config.php');
 
-    //$data = $_POST["data"];
     $minKm = intval($_POST["mininum_kilometer"]);
     $maxKm = intval($_POST["maximum_kilometer"]);
     $minYear = intval($_POST["mininum_year"]);
@@ -25,14 +24,14 @@ require_once('config.php');
         $returndata = $returndata.'<div class="d-flex justify-content-center flex-wrap">
             <div class="p-2 col">
                 <div class="card" style="width: 18rem;">
-                    <img src="'.$car["image"].'" class="card-img-top" alt="...">
+                    <img src="'.$car["picture"].'" class="card-img-top" alt="...">
                     <div class="px-2 card-body">
-                        <h5>'.$car["marque"].'</h5>
+                        <h5>'.$car["brand"].'</h5>
                         <h6>'.$car["model"].'</h6>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="px-2 list-group-item"><div>'.$car["years"].' Mise en circulation<br>'.$car["kilometers"].' kilomètres</div></li>
-                        <li class="px-2 list-group-item"><div>'.$car["energie"].'</div></li>
+                        <li class="px-2 list-group-item"><div>'.$car["fuel"].'</div></li>
                         <li class="px-2 list-group-item">'.$car["price"].' €</li>
                     </ul>
                     <div class="card-body">
@@ -43,8 +42,3 @@ require_once('config.php');
         </div>';
     }
     echo $returndata;
-    //return $returndata;
-    //header("Location: ../admin_rdv.php");
-   // exit();
-
-

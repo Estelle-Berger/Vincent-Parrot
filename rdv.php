@@ -10,10 +10,12 @@
     <h1>Gérer les rendez-vous des clients</h1>
     <div class="p-2 row d-flex justify-content-evenly gap-2 flex-wrap">
         <div class="d-flex justify-content-evenly gap-2 flex-wrap">
-            <?php foreach ($rdvAll as $rdv){?>
+            <?php foreach ($rdvAll as $rdv){
+                foreach($rdv as $key => $value)
+            $rdv[$key] = htmlspecialchars($value, ENT_QUOTES,'UTF-8');?>
                 <div class="card" style="width: 18rem;">
                     <div class="d-flex jutify-content-between card-header">
-                        <div class="col-6 d-flex align-items-center"><h2><?=$rdv['categorie'];?></h2></div>
+                        <div class="col-6 d-flex align-items-center"><h2><?=$rdv['category'];?></h2></div>
                         <div class="col-6 text-end">
                             <div class="p-2">
                                 <p><?=$rdv['dealby'];?></p>

@@ -11,17 +11,20 @@ $cars =$requete->fetchAll();
 ?>
 
 <div class="m-2 container-fluid">
-    <div class="p-2 row d-flex justify-content-evenly flex-wrap">
-        <div class="col">
-            <div class="p-2">
-                <?php foreach($cars as $car){?>
-                <h1><?=$car['marque'];?></h1>
+    <div class="p-2 d-flex justify-content-evenly flex-wrap">
+        <div class="row">
+            <div class="col-6">
+                <div class="p-2">
+                    <?php foreach($cars as $car){
+                        foreach($car as $key => $value)
+                    $car[$key] = htmlspecialchars($value, ENT_QUOTES,'UTF-8');?>
+                    <h1><?=$car['brand'];?></h1>
+                </div>
+                <div class="p-2 d-inline-flex justify-content-center">
+                    <img src="<?=$car['picture'];?>"  width="100%" height="100%" alt="<?=$car['brand'];?>">
+                </div>
             </div>
-            <div class="p-2 d-flex justify-content-center">
-                <img src="<?=$car['image'];?>"  width="100%" height="100%" alt="<?=$car['marque'];?>">
-            </div>
-        </div>
-        <div class="p-2 col">
+        <div class="p-2 col-6 d-inline-flex align-items-center">
             <div class="col">
                 <label for="text"class="form-label">Modele</label>
                 <p class="text-center border rounded"><?=$car['model'];?></p>
@@ -32,7 +35,7 @@ $cars =$requete->fetchAll();
             </div>
             <div class="col">
                 <label for="text"class="form-label">Kilomètres</label>
-                <p class="text-center border rounded"><?=$car['kilometers'];?></p>
+                <p class="text-center border rounded"><?=$car['kilometers'];?> km</p>
             </div>
             <div class="col">
                 <label for="text"class="form-label">Couleur</label>
@@ -40,7 +43,7 @@ $cars =$requete->fetchAll();
             </div>
             <div class="col">
                 <label for="text"class="form-label">Carburant</label>
-                <p class="text-center border rounded"><?=$car['energie'];?></p>
+                <p class="text-center border rounded"><?=$car['fuel'];?></p>
             </div>
         </div>
             <?php }?>
@@ -53,11 +56,15 @@ $cars =$requete->fetchAll();
             <div class="p-2 col">
                 <label for="text"class="form-label">Options</label>
                 <ul class="text-start border rounded">
-                <?php foreach($options as $option){?>
+                <?php foreach($options as $option){
+                        foreach($option as $key => $value)
+                    $option[$key] = htmlspecialchars($value, ENT_QUOTES,'UTF-8');?>
                     <li><?=$option['option_name'];?></li>
                     <?php }?>
                 </ul>
             </div>
+        </div>
+        
     </div>
     <div>
         <?php require_once('./form_cars.php') ?>

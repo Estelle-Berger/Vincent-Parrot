@@ -41,7 +41,7 @@
                         rounded" name="comment" id="comment" cols="20" rows="5"required></textarea>
                     </div>
                     <div class="p-2 d-flex justify-content-center">
-                        <input class="btn btn-outline-secondary" type="submit" id="mybutton" name="avis" value="Envoyer" >
+                        <input class="btn btn-outline-secondary" type="submit" id="mybutton" name="send_avis" value="Envoyer" >
                     </div>
                 </div>
             </div>

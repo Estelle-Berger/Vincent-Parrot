@@ -29,7 +29,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="nav nav-underline me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a href="index.php" class="nav-link px-2 header-a">Accueil</a></li>
                         <li class="nav-item"><a href="services.php" class="nav-link px-2 header-a">Services</a></li>
                         <li class="nav-item"><a href="cars.php" class="nav-link px-2 header-a">Voitures d'occasion</a></li>
                         <li class="nav-item"><a href="contact.php" class="nav-link px-2 header-a">Contact</a></li>

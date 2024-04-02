@@ -4,8 +4,8 @@
 
 #----------------récuperation des services-----------------
 
-$requete = $bdd->prepare("SELECT b.categorie_name, a.service_title, a.service_price, a.service_id FROM services a
-left join categories b on a.service_categorie = b.categorie_id");
+$requete = $bdd->prepare("SELECT b.category_name, a.service_title, a.service_price, a.service_id FROM services a
+left join categories b on a.service_category = b.category_id");
 $requete->execute();
 $services =$requete->fetchAll();
 ?>
@@ -40,9 +40,11 @@ $services =$requete->fetchAll();
     </thead>
     <tbody>
     <?php 
-        foreach ($services as $service) {?>
+        foreach ($services as $service) {
+            foreach($service as $key => $value)
+            $service[$key]= htmlspecialchars($value, ENT_QUOTES,'UTF-8');?>
         <tr>
-            <td><?=$service['categorie_name'];?></td>
+            <td><?=$service['category_name'];?></td>
             <td><?=$service['service_title'];?></td>
             <td><?=$service['service_price']; ?></td>
             <td><a href="./lib/delete_service.php?id=<?=$service['service_id']?>" class="header-a">Supprimer</a></td>

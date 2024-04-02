@@ -17,9 +17,12 @@ CREATE TABLE users(
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     password_system TINYINT NOT NULL,
-    profil_categorie INT,
-    FOREIGN KEY (profil_categorie)REFERENCES profils(profil_id)
+    profil_category INT,
+    FOREIGN KEY (profil_category)REFERENCES profils(profil_id)
 );
+
+INSERT INTO users VALUES('Vincent', 'Parrot', 'vincent.parrot@garagiste.com', 
+'$2a$12$xJKDPEtEHLowTZNGqotk3eICOwJP0VH9T79bSk0nSl4vNUbogeOxy', 1, '1');
 
 CREATE TABLE opening_hours(
     day_name VARCHAR(20)NOT NULL,
@@ -30,8 +33,8 @@ CREATE TABLE opening_hours(
 );
 
 CREATE TABLE categories(
-    categorie_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    categorie_name VARCHAR(255) NOT NULL
+    category_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    category_name VARCHAR(255) NOT NULL
 );
 
 INSERT INTO categories VALUES('Services_Carrosserie');
@@ -43,9 +46,9 @@ CREATE TABLE services(
     service_title VARCHAR(255) NOT NULL,
     service_description VARCHAR(255) NOT NULL,
     service_price VARCHAR(255) NOT NULL,
-    service_image VARCHAR(255) NOT NULL,
-    service_categorie INT,
-    FOREIGN KEY (service_categorie) REFERENCES categories(categorie_id)
+    service_picture VARCHAR(255) NOT NULL,
+    service_category INT,
+    FOREIGN KEY (service_category) REFERENCES categories(category_id)
 );
 
 CREATE TABLE options(
@@ -53,16 +56,27 @@ CREATE TABLE options(
     option_name VARCHAR (255) NOT NULL
 );
 
+INSERT INTO options VALUES('3 portes');
+INSERT INTO options VALUES('5 portes');
+INSERT INTO options VALUES('Climatisations');
+INSERT INTO options VALUES('Airbags latéraux');
+INSERT INTO options VALUES('Airbags frontaux');
+INSERT INTO options VALUES('GPS');
+INSERT INTO options VALUES('Fermeture entralisée');
+INSERT INTO options VALUES('Direction assistée');
+INSERT INTO options VALUES('Caméra de recul');
+INSERT INTO options VALUES('Alarme antivol');
+
 CREATE TABLE cars(
     car_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    marque VARCHAR(50) NOT NULL,
+    brand VARCHAR(50) NOT NULL,
     model VARCHAR(50) NOT NULL,
     kilometers VARCHAR(50) NOT NULL,
     years VARCHAR(50) NOT NULL,
     price VARCHAR(50) NOT NULL,
     color VARCHAR(50) NOT NULL,
-    energie VARCHAR(50) NOT NULL,
-    image VARCHAR(50) NOT NULL,
+    fuel VARCHAR(50) NOT NULL,
+    picture VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE options_cars(
@@ -82,19 +96,11 @@ CREATE TABLE avis(
     is_valid TINYINT NOT NULL
 );
 
--- CREATE TABLE save_avis(
---     save_avis_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,
---     avis_save VARCHAR (255) NOT NULL,
---     note_save VARCHAR (255) NOT NULL,
---     name_save VARCHAR (255) NOT NULL,
---     comment_save VARCHAR (255) NOT NULL
--- );
-
 CREATE TABLE rdv(
     rdv_id INT(11)NOT NULL PRIMARY KEY AUTO_INCREMENT,
     firstname VARCHAR (255) NOT NULL,
     lastname VARCHAR (255) NOT NULL,
-    categorie VARCHAR (255) NOT NULL,
+    category VARCHAR (255) NOT NULL,
     comment VARCHAR (255) NOT NULL,
     phone VARCHAR (255) NOT NULL,
     email VARCHAR (255) NOT NULL,

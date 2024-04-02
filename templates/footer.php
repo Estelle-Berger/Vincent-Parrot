@@ -19,7 +19,9 @@ $times = $requete->fetchAll();
                 </thead>
                 <tbody>
                     <?php
-                    foreach($times as $time){?>
+                    foreach($times as $time){
+                        foreach($time as $key => $value)
+                        $time[$key] = htmlspecialchars($value, ENT_QUOTES,'UTF-8');?>
                     <tr>
                         <td><?=$time['day_name'];?></td>
                         <td><?=$time['open_am'];?> - <?=$time['closed_am'];?></td>
@@ -37,13 +39,15 @@ $times = $requete->fetchAll();
             <a href="index.php" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
                 <img src="./assets/images/logo.png" width="100px" alt="Logo garage">
             </a>
-        <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Company, Inc</span>
+        <span class="mb-3 mb-md-0 text-body-secondary">© 2024 Company, Inc</span>
         </div>
     </footer>
     </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="./scripts/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.js"></script>
+
 </body>
 </html>

@@ -77,10 +77,8 @@
             </div>
         </div> 
     </div>             
-
-
-
     <div class="filter_data d-flex justify-content-evenly gap-2 flex-wrap">
+        
     </div>
 </div>
 

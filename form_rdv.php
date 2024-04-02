@@ -21,13 +21,19 @@
                             placeholder="Prénom" id="firstname" name="firstname" required>
                         </div>
                         <div class="p-2 col-4">
-                            <label for="categorie"class="form-label">Sujet</label>
+                            <label for="category"class="form-label">Sujet</label>
                             <select class="form-control d-inline-flex focus-ring focus-ring-dark py-1 px-2 text-decoration-none border rounded-2"
-                                id="categorie" name="categorie">
+                                id="category" name="category">
                                 <option>Réparation carrosserie</option>
                                 <option>Réparation mécanique</option>
                                 <option>Entretien</option>
+                                <?php
+                                $page = basename($_SERVER['PHP_SELF']);
+                                if($page == 'contact.php' || $page == 'index.php'){?>
                                 <option>Voiture d'occasion</option>
+                                <option>Autres</option>
+                                <?php }?>
+
                             </select>
                         </div>
                     </div>

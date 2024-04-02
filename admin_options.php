@@ -10,7 +10,9 @@ $listeOptions = $requete->fetchAll();
     <div class="p-3">
         <h1>Les options</h1>
         <div class="d-flex justify-content-evenly gap-2 flex-wrap">
-            <?php foreach($listeOptions as $option){?>
+            <?php foreach($listeOptions as $option){
+                    foreach($option as $key => $value)
+                $option[$key] = htmlspecialchars($value, ENT_QUOTES,'UTF-8');?>
                 <div class="p-2 gap-2 d-flex justify-content-start">
                     <p type="checkbox" name="- Option : <?=$option['option_id'];?>" value="1">- <?=$option['option_name'];?></p>
                 </div>
