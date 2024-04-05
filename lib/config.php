@@ -113,9 +113,28 @@ if(isset($_POST['save_employe'])){
             "password" => $password_save,
             "profil" => $profil_save
         )
-    );}
-mail($email_save, 'V.parrot : Création de votre compte', "Bonjour, voici votre mot de passe temporaire : ".$password.".\n Il vous sera demandé de le modifier à la première connexion.");
-echo "Compte créé ! Voici votre mot de passe temporaire : ".$password;
+        );
+    $header= "MIME-Version: 1.0\r\n";
+    $header.='From:"Vincent"<estelleberger13@gmail.com>'."\n";
+    $header.='Content-Type: text/html; charset="utf-8"'."\n";
+    $header.='Content-Transfer-Encoding: 8bit';
+
+    $message='
+    <html>
+        <body>
+            <div align="center">
+                Bonjour,<br> voici votre mot de passe temporaire :'.$password.'.<br>
+                Il vous sera demandé de le modifier à la première connexion.
+                <br>
+            </div>
+        </body>
+    </html>
+    ';
+    $success = mail($email_save,"Création de votre compte", $message, $header);
+    if (!$success) {
+        echo "Compte créé ! Mais email pas envoyé, voici votre mot de passe temporaire : ".$password;
+    }
+}
 }
 
 if(isset($_POST['save_password'])){

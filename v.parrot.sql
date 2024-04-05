@@ -22,7 +22,7 @@ CREATE TABLE users(
 );
 
 INSERT INTO users VALUES('Vincent', 'Parrot', 'vincent.parrot@garagiste.com', 
-'$2a$12$xJKDPEtEHLowTZNGqotk3eICOwJP0VH9T79bSk0nSl4vNUbogeOxy', 1, '1');
+'$2y$10$Wlo/xHt5SYZYBNXM8qdbSelWo3GXhpioRCMSn3kmxaeUs1qKcmMXS', 1, '1');
 
 CREATE TABLE opening_hours(
     day_name VARCHAR(20)NOT NULL,
