@@ -19,7 +19,7 @@ function onStarClick(event) {
 const mybutton = document.getElementById("mybutton");
 
 // ------------------------------sécurité du mot de passe--------------------------------------------------
-const bcrypt = require('bcryptjs');
+//const bcrypt = require('bcryptjs');
 // ------------------------------------filtre-----------------------------------------------
 //récupération des données de la table et envoyer sur la page web
 function filter_data() {

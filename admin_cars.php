@@ -1,7 +1,8 @@
 <?php 
     require_once('./templates/header.php');
     require_once('./lib/config.php');
-
+    require_once('./lib/auth.php');
+    check_auth();
 #----------------récuperation des cars-----------------
 $requete = $bdd->prepare("SELECT car_id, brand, model, price FROM cars");
 $requete->execute();

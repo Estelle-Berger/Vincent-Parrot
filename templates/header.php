@@ -20,6 +20,7 @@
     <header>
         <nav class="navbar navbar-expand-lg border-bottom">
             <div class="m-2 container-fluid">
+                <!-- logo retour sur la page index -->
                 <a href="./index.php" class="navbar-brand">
                     <img src="./assets/images/logo.png" alt="logo Garage" width="100px">
                 </a>
@@ -29,6 +30,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="nav nav-underline me-auto mb-2 mb-lg-0">
+                        <!-- navigation visiteur -->
                         <li class="nav-item"><a href="services.php" class="nav-link px-2 header-a">Services</a></li>
                         <li class="nav-item"><a href="cars.php" class="nav-link px-2 header-a">Voitures d'occasion</a></li>
                         <li class="nav-item"><a href="contact.php" class="nav-link px-2 header-a">Contact</a></li>
@@ -38,6 +40,7 @@
                             if(isset($_SESSION['isLogged']) AND $_SESSION["isLogged"]==true){
                                 if (isset($_SESSION['User_Profil']) AND $_SESSION['User_Profil'] == 1){?>
                                 <li class="nav-item dropdown">
+                                    <!-- navigation administrateur -->
                                     <a class="nav-link dropdown-toggle header-a" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Administration</a>
                                     <ul class="dropdown-menu">
                                     <li><a class="dropdown-item header-a" href="admin_cars.php">Gestion des voitures d'occasion</a></li>
@@ -52,6 +55,7 @@
                             <?php }
                                 else {?>
                             <li class="nav-item dropdown">
+                                <!-- navigation employé -->
                             <a class="nav-link dropdown-toggle header-a" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Employé</a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item header-a" href="admin_avis.php">Gestion des avis</a></li>
@@ -62,6 +66,7 @@
                             <?php }}?>
                     </ul>
                     <div class="login p-2">
+                        <!-- bouton de login espace pro -->
                         <?php if(isset($_SESSION['isLogged']) AND $_SESSION['isLogged']==true){?>
                             <a href="./logout.php" class="btn btn-outline-secondary" type="submit">Déconnexion</a>
                         <?php } else {?>

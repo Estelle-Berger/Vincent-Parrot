@@ -1,5 +1,7 @@
 <?php 
     require_once('./templates/header.php');
+    require_once('./lib/auth.php');
+    check_auth();
 ?>
 <div class="container-fluid">
         <form method="POST" action="./admin_services.php" enctype="multipart/form-data">

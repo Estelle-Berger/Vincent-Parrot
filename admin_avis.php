@@ -1,6 +1,8 @@
 <?php 
     require_once('./templates/header.php');
     require_once('./lib/config.php');
+    require_once('./lib/auth.php');
+    check_auth();
     $requete = $bdd->prepare("SELECT * FROM avis WHERE is_valid = 1");
     $requete->execute();
     $avis_All = $requete->fetchAll();

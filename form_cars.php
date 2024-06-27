@@ -9,7 +9,7 @@
 
 ?>
 <div class="p-2 container-fluid">
-    <form method="post" action="">
+    <form class="p-2" method="post" action="">
         <legend>Essayer ou renseignement :</legend>
         <div class="d-flex justify-content-center">
             <div class="p-2 row border rounded d-flex justify-content-center">

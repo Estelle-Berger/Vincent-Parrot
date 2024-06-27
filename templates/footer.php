@@ -19,6 +19,7 @@ $times = $requete->fetchAll();
                 </thead>
                 <tbody>
                     <?php
+                    # boucle pour l'affichage des horaires du garage
                     foreach($times as $time){
                         foreach($time as $key => $value)
                         $time[$key] = htmlspecialchars($value, ENT_QUOTES,'UTF-8');?>
@@ -36,6 +37,7 @@ $times = $requete->fetchAll();
             <a href="politique_confidentialite.php" class="link-dark" role="button" style="text-decoration: none;">Politique de confidentialité</a>
         </div>
         <div class="col-md-4 d-flex justify-content-end align-items-center">
+            <!-- logo retour sur la page index -->
             <a href="index.php" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
                 <img src="./assets/images/logo.png" width="100px" alt="Logo garage">
             </a>

@@ -7,7 +7,13 @@ require_once('config.php');
     $maxYear = intval($_POST["maximum_year"]);
     $minPrice = intval($_POST["mininum_price"]);
     $maxPrice = intval($_POST["maximum_price"]);
-    $requete = $bdd->prepare("SELECT * FROM cars WHERE (convert(kilometers,int)>=:minKm AND convert(kilometers,int)<=:maxKm) AND (convert(years,int)>=:minYear AND convert(years,int)<=:maxYear) AND (convert(price,int)>=:minPrice AND convert(price,int)<=:maxPrice);");
+    $requete = $bdd->prepare("SELECT * FROM cars 
+    WHERE (convert(kilometers,int)>=:minKm 
+    AND convert(kilometers,int)<=:maxKm) 
+    AND (convert(years,int)>=:minYear 
+    AND convert(years,int)<=:maxYear) 
+    AND (convert(price,int)>=:minPrice
+    AND convert(price,int)<=:maxPrice);");
     $requete->execute(
         array(
             "minKm" => $minKm,
@@ -23,9 +29,9 @@ require_once('config.php');
     foreach ($cars as $car){
         $returndata = $returndata.'<div class="d-flex justify-content-center flex-wrap">
             <div class="p-2 col">
-                <div class="card" style="width: 18rem;">
+                <div class="card survol" style="width: 18rem;">
                     <img src="'.$car["picture"].'" class="card-img-top" alt="...">
-                    <div class="px-2 card-body">
+                    <div class="px-3 card-body">
                         <h5>'.$car["brand"].'</h5>
                         <h6>'.$car["model"].'</h6>
                     </div>

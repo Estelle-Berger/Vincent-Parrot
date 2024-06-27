@@ -1,6 +1,8 @@
 <?php 
     require_once('./templates/header.php');
     require_once('./lib/config.php');
+    require_once('./lib/auth.php');
+    check_auth();
 ?>
 <div class="p-2 container-fluid">
     <form method="post" action="">

@@ -1,6 +1,6 @@
-CREATE DATABASE v_parrot;
+CREATE DATABASE estelle_vparrot;
 
-USE v_parrot;
+USE estelle_vparrot;
 
 CREATE TABLE profils(
     profil_id INT(11)NOT NULL PRIMARY KEY,
@@ -21,8 +21,8 @@ CREATE TABLE users(
     FOREIGN KEY (profil_category)REFERENCES profils(profil_id)
 );
 
-INSERT INTO users VALUES('Vincent', 'Parrot', 'vincent.parrot@garagiste.com', 
-'$2y$10$Wlo/xHt5SYZYBNXM8qdbSelWo3GXhpioRCMSn3kmxaeUs1qKcmMXS', 1, '1');
+INSERT INTO users VALUES(0,'Vincent', 'Parrot', 'vincent.parrot@garagiste.com', 
+'toto', 1, '1');
 
 CREATE TABLE opening_hours(
     day_name VARCHAR(20)NOT NULL,
