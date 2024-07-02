@@ -18,15 +18,16 @@ $cars =$requete->fetchAll();
                     foreach($car as $key => $value)
                 $car[$key] = htmlspecialchars($value, ENT_QUOTES,'UTF-8');?>
                 <h1><?=$car['brand'];?></h1>
+                <h4><?=$car['model'];?></h4>
             </div>
             <div class="col-12 p-2 d-flex justify-content-center">
                 <img src="<?=$car['picture'];?>" width="70%" height="100%" alt="<?=$car['brand'];?>">
             </div>
             <div class="row row-cols-1 row-cols-md-2 d-flex justify-content-center">
-                <div class="col-6 p-2 d-flex flex-column">
+                <div class="col-6 d-flex flex-column">
                     <div class="col text-center">
-                        <label for="text"class="form-label text-decoration-underline">Modele</label>
-                        <p class="text-center fw-bold"><?=$car['model'];?></p>
+                        <label for="text"class="form-label text-decoration-underline">Prix</label>
+                        <p class="text-center fw-bold"><?=$car['price'];?>€</p>
                     </div>
                     <div class="col text-center">
                         <label for="text"class="form-label text-decoration-underline">Mise en circulation</label>

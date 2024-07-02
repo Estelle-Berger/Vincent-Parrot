@@ -1,11 +1,12 @@
 <?php
-session_start();
 
 function check_auth() {
-    $inactive = 3600; // 60 minutes
+    $inactive = 3600; // 30 minutes
 
     if (isset($_SESSION['user_id'])) {
+        
         if (isset($_SESSION['last_activity'])) {
+            
             $session_life = time() - $_SESSION['last_activity'];
             if ($session_life > $inactive) {
                 // Si la session est expirée, la détruire et rediriger vers la page d'accueil
@@ -19,7 +20,7 @@ function check_auth() {
         $_SESSION['last_activity'] = time();
     } else {
         // Si l'utilisateur n'est pas authentifié, rediriger vers la page d'accueil
-        header("Location: ./password_employe.php");
+        header("Location: ./login.php");
         exit();
     }
 }

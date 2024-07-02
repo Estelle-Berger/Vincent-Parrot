@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" AND isset($_POST['valid_login'])){
     $password_save = $hashPassword;
     if($email != ""){
         // connexion à la bdd en tant qu'admin---------
-        $requete_login = $bdd->prepare("SELECT*FROM users WHERE email = '$email_save'");
+        $requete_login = $bdd->prepare("SELECT * FROM users WHERE email = '$email_save'");
         $requete_login->execute();
         if ($requete_login->rowCount()==1){
             $user = $requete_login->fetch();
@@ -71,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" AND isset($_POST['valid_login'])){
                     $_SESSION["lastname"]=$user['lastname'];
                     $_SESSION["User_Profil"]=$user['profil_category'];
                     $_SESSION['last_activity'] = time();
-                    $_SESSION['user_id'] = $user_id;
+                    $_SESSION['user_id'] = $user['user_id'];
                     header("Location: ./admin_cars.php");
                     exit(); 
                 }
@@ -119,6 +119,7 @@ if(isset($_POST['save_employe'])){
             "profil" => $profil_save
         )
         );
+        // déclaration des paramètres avant la fonction 
     $header= "MIME-Version: 1.0\r\n";
     $header.='From:"Vincent"<estelleberger13@gmail.com>'."\n";
     $header.='Content-Type: text/html; charset="utf-8"'."\n";
@@ -141,7 +142,7 @@ if(isset($_POST['save_employe'])){
     }
 }
 }
-
+// personnalisation du mdp par l'employé
 if(isset($_POST['save_password'])){
     if(!is_valid_token($_POST['token'])){
         die("erreur CSRF détectée");
@@ -157,6 +158,7 @@ if(isset($_POST['save_password'])){
             $requete_email = $bdd->prepare("SELECT email FROM users WHERE email = '$email_password'");
             $requete_email->execute();
             if($requete_email-> rowCount() == 1){
+                //modification en bdd
                 $requete_password = $bdd->prepare("UPDATE users SET password = :pass, password_system = 0 WHERE email = '$email_password'");
                 $requete_password->execute(
                     array(
@@ -197,7 +199,7 @@ if(isset($_POST['save_service'])){
     $price_save = htmlspecialchars($price, ENT_NOQUOTES,'UTF-8');
     $category = $_POST['categorie'];
     $category_save = htmlspecialchars($category, ENT_NOQUOTES,'UTF-8');
-
+// condition pour l'insertion d'image
     if(isset($_FILES['file'])){
         $tmpName = $_FILES['file']['tmp_name'];
         $name = $_FILES['file']['name'];
@@ -485,7 +487,7 @@ if(isset($_POST['send_avis'])){
         )
     );}
 } 
-
+//-----------insertion des rdv pris par les clients-----------------
 if(isset($_POST['save_rdv'])){
     if(!is_valid_token($_POST['token'])){
         die("erreur CSRF détectée");
